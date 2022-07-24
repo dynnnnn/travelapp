@@ -26,6 +26,7 @@ export default function AddTrip({ navigation }) {
     let fDate =
       tempDate.getDate() + "/" + (tempDate.getMonth() + 1) + "/"+ tempDate.getFullYear();
     console.log(fDate);
+    setDate(fDate);
   }
 
   function showMode(currentMode) {

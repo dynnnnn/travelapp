@@ -27,7 +27,7 @@ function LogIn({ navigation }) {
         .then((userCredentials) => {
           const user = userCredentials.user;
           console.log("Registered with:", user.email);
-          navigation.navigate("home");
+          navigation.navigate("loggedInBottomTab");
 
           setEmail("");
           setPassword("");
@@ -42,7 +42,7 @@ function LogIn({ navigation }) {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with:", user.email);
-        navigation.navigate("home");
+        navigation.navigate("loggedInBottomTab");
         setIsLoggedIn(true);
         setEmail("");
         setPassword("");
