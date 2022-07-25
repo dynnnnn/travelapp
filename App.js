@@ -1,9 +1,8 @@
-
-import { StyleSheet, View } from "react-native";
-import { useState} from "react";
+import { StyleSheet, View, SafeAreaView } from "react-native";
+import { useState } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LogIn from "./screens/LogIn";
 import Home from "./screens/Home";
@@ -14,30 +13,30 @@ import AddFlight from "./screens/AddFlight";
 import { LogInContext } from "./context/LogInContext";
 import LoggedInBottomTab from "./stacks/LoggedInBottomTab";
 
-
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-  return  <NavigationContainer>
-  <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
-  <Stack.Navigator  initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}>
-  
-    <Stack.Screen name="login" component={LogIn} />
-    <Stack.Screen name="loggedInBottomTab" component={LoggedInBottomTab}/>
-   
-  
-  </Stack.Navigator>
-  </LogInContext.Provider>
-</NavigationContainer>
+  return (
+    <NavigationContainer>
+      <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <Stack.Navigator
+          initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}
+        >
+          <Stack.Screen name="login" component={LogIn} />
+          <Stack.Screen
+            name="loggedInBottomTab"
+            component={LoggedInBottomTab}
+          />
+        </Stack.Navigator>
+      </LogInContext.Provider>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 100,
+    marginTop: 10,
   },
 });

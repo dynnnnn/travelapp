@@ -25,7 +25,6 @@ export default function AddTrip({ navigation }) {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() + "/" + (tempDate.getMonth() + 1) + "/"+ tempDate.getFullYear();
-    console.log(fDate);
     setDate(fDate);
   }
 
@@ -35,7 +34,7 @@ export default function AddTrip({ navigation }) {
   }
 
   function submitHandler() {
-    firebase.firestore().collection("trips").doc(country).set({
+    firebase.firestore().collection("trips").doc(country+date).set({
       country: country,
       numberOfDays: numberOfDays,
       date: date
@@ -52,7 +51,7 @@ export default function AddTrip({ navigation }) {
         }}
       />
 
-      <Button title="datepicker" onPress={() => setShow("date")} mode={mode} />
+      <Button title="start date" onPress={() => setShow("date")} mode={mode} />
 
       {show && (
         <DateTimePicker testID="dateTimePicker" value={date} is24Hour={true} display="default" onChange={onDateChange} />
