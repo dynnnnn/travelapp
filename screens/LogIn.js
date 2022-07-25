@@ -52,6 +52,7 @@ function LogIn({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text > Welcome</Text>
       <Text style={styles.title}>{isLogIn ? "Log In" : "Sign Up"}</Text>
       <TextInput
         placeholder="email"
