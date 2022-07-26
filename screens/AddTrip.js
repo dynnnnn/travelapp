@@ -24,7 +24,11 @@ export default function AddTrip({ navigation }) {
 
     let tempDate = new Date(currentDate);
     let fDate =
-      tempDate.getDate() + "/" + (tempDate.getMonth() + 1) + "/"+ tempDate.getFullYear();
+      tempDate.getDate() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getFullYear();
     console.log(fDate);
     setDate(fDate);
   }
@@ -34,12 +38,13 @@ export default function AddTrip({ navigation }) {
     setMode(currentMode);
   }
 
-  function submitHandler() {
-    firebase.firestore().collection("trips").doc(country).set({
+  async function submitHandler() {
+    const newTrip = await firebase.firestore().collection("trips").doc().set({
       country: country,
       numberOfDays: numberOfDays,
-      date: date
+      date: date,
     });
+
     navigation.navigate("home");
   }
 
@@ -55,7 +60,13 @@ export default function AddTrip({ navigation }) {
       <Button title="datepicker" onPress={() => setShow("date")} mode={mode} />
 
       {show && (
-        <DateTimePicker testID="dateTimePicker" value={date} is24Hour={true} display="default" onChange={onDateChange} />
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          is24Hour={true}
+          display="default"
+          onChange={onDateChange}
+        />
       )}
       <TextInput
         placeholder="number of days"

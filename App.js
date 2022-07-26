@@ -27,8 +27,8 @@ export default function App() {
   <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
   <Stack.Navigator  initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}>
   
-    <Stack.Screen name="login" component={LogIn} />
-    <Stack.Screen name="loggedInBottomTab" component={LoggedInBottomTab}/>
+    <Stack.Screen name="login" component={LogIn} options={{ headerShown: false }}/>
+    <Stack.Screen name="loggedInBottomTab" component={LoggedInBottomTab} options={{ headerShown: false }}/>
    
   
   </Stack.Navigator>

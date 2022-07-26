@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { auth } from "../database/firebase";
 import firebase from "firebase/app";
 import { LogInContext } from "../context/LogInContext";
+import Title from "../components/Title";
+
 
 import {
   StyleSheet,
@@ -52,8 +54,8 @@ function LogIn({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text > Welcome</Text>
-      <Text style={styles.title}>{isLogIn ? "Log In" : "Sign Up"}</Text>
+
+      <Title>{isLogIn ? "Log In" : "Sign Up"}</Title>
       <TextInput
         placeholder="email"
         value={email}

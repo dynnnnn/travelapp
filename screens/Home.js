@@ -12,20 +12,46 @@ import { LogInContext } from "../context/LogInContext";
 import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
 
+const db = firebase.firestore();
+
 function Home({ navigation }) {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
+  const tripsCollectionRef = db.collection("trips");
+
+
+//   useEffect(() => {
+//       async function getTrips(){
+//           const data = await 
+
+//       }
+//       getTrips();
+//   }, []);
+
   useEffect(() => {
-    const unsubscribe = firebase
-      .firestore()
+    const unsubscribe = db
       .collection("trips")
       .onSnapshot((collection) => {
-        const data = collection.docs.map((doc) => doc.data());
+        const data = collection.docs.map((doc) => ({ ...doc.data(), id: doc.id}));
         setTrips(data);
         console.log(data);
       });
     return () => unsubscribe();
   }, []);
+
+
+  useEffect(() => {
+    db.collection("trips").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id}`);
+      
+        });
+      });
+   
+  }, []);
+
+
+
 
   return (
     <View>
