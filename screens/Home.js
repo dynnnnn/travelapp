@@ -11,6 +11,7 @@ import { auth } from "../database/firebase";
 import { LogInContext } from "../context/LogInContext";
 import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
+import Title from "../components/Title";
 
 const db = firebase.firestore();
 
@@ -39,12 +40,12 @@ function Home({ navigation }) {
   function renderItem({ item }) {
     return (
       <TouchableOpacity style={styles.tripContainer}
-        onPress={() => navigation.navigate("tripdetails", { id: item.id, country: item.country })}
+        onPress={() => navigation.navigate("tripdetails", { id: item.id, country: item.country, date: item.date, endDate: item.endDate })}
       >
         <View>
           <Text>{item.country}</Text>
-          <Text>{item.date}</Text>
-          <Text>{item.numberOfDays}</Text>
+          <Text>{item.date} to {item.endDate}</Text>
+      
         </View>
       </TouchableOpacity>
     );
@@ -52,6 +53,7 @@ function Home({ navigation }) {
 
   return (
     <View>
+    <Title>My Trips</Title>
       <TouchableOpacity
         style={styles.tripContainer}
         onPress={() => navigation.navigate("tripdetails")}

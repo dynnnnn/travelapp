@@ -61,7 +61,7 @@ export default function AddTrip({ navigation }) {
   async function submitHandler() {
     const newTrip = await firebase.firestore().collection("trips").doc().set({
       country: country,
-      numberOfDays: numberOfDays,
+    //   numberOfDays: numberOfDays,
       date: date,
       endDate: endDate
     });
