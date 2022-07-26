@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import React, {useContext} from 'react';
 import { auth } from "../database/firebase";
 import { LogInContext } from "../context/LogInContext";
+import Title from '../components/Title';
 
 const Account = ({navigation}) => {
     const { isLoggedIn, setIsLoggedIn} = useContext(LogInContext);
@@ -21,7 +22,7 @@ const Account = ({navigation}) => {
 
   return (
     <View>
-      <Text>Account</Text>
+      <Title>Account</Title>
 
       <Button title="sign out" onPress={handleSignOut} />
     </View>

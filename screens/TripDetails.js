@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import firebase from 'firebase';
+import Title from '../components/Title';
 
 
 
@@ -29,7 +30,7 @@ getTrip();
 
   return (
     <View>
-      <Text>{country}</Text>
+      <Title>{country}</Title>
 
    
 
