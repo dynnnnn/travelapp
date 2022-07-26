@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 const db = firebase.firestore();
 
 function Home({ navigation }) {
+    const db = firebase.firestore();
+
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
   const tripsCollectionRef = db.collection("trips");
@@ -39,11 +41,11 @@ function Home({ navigation }) {
     return () => unsubscribe();
   }, []);
 
-
   useEffect(() => {
     db.collection("trips").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(`${doc.id}`);
+<<<<<<< HEAD
       
         });
       });
@@ -52,10 +54,19 @@ function Home({ navigation }) {
 
 
 
+=======
+        });
+        
+       
+      });
+
+  }, []);
+  
+>>>>>>> 180c2b104e2f4ddd9799b440eae7c85d6c20e2f6
 
   return (
     <View>
-      <Text>{isLoggedIn ? "logged in" : "not logged in"}</Text>
+     
       <TouchableOpacity
         style={styles.tripContainer}
         onPress={() => navigation.navigate("tripdetails")}

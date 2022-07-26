@@ -57,7 +57,7 @@ export default function AddTrip({ navigation }) {
         }}
       />
 
-      <Button title="datepicker" onPress={() => setShow("date")} mode={mode} />
+      <Button title="start date" onPress={() => setShow("date")} mode={mode} />
 
       {show && (
         <DateTimePicker
