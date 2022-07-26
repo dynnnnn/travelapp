@@ -12,6 +12,7 @@ import { LogInContext } from "../context/LogInContext";
 import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
+import SmallHeading from "../components/SmallHeading";
 
 
 
@@ -56,7 +57,7 @@ useEffect(() =>{
         onPress={() => navigation.navigate("tripdetails", { id: item.id, country: item.country, date: item.date, endDate: item.endDate })}
       >
         <View>
-          <Text>{item.country}</Text>
+          <SmallHeading>{item.country}</SmallHeading>
           <Text>{item.date} to {item.endDate}</Text>
       
         </View>
