@@ -1,4 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AddAccom from '../screens/AddAccom';
+import AddActivity from '../screens/AddActivity';
 import AddFlight from '../screens/AddFlight';
 import AddItinerary from '../screens/AddItinerary';
 import AddTrip from '../screens/AddTrip';
@@ -22,6 +24,8 @@ export default function TripStack({navigation}) {
       <Stack.Screen name="edittrip" component={EditTrip} options={{ headerShown: false }} />
       <Stack.Screen name="chooseaddtype" component={ChooseAddType} options={{ headerShown: false }} />
       <Stack.Screen name="additinerary" component={AddItinerary} options={{ headerShown: false }} />
+      <Stack.Screen name="addaccom" component={AddAccom} options={{ headerShown: false }} />
+      <Stack.Screen name="addactivity" component={AddActivity} options={{ headerShown: false }} />
      
      
     
