@@ -15,72 +15,52 @@ import { useEffect, useState } from "react";
 const db = firebase.firestore();
 
 function Home({ navigation }) {
-    const db = firebase.firestore();
+  const db = firebase.firestore();
 
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
-  const tripsCollectionRef = db.collection("trips");
 
 
-//   useEffect(() => {
-//       async function getTrips(){
-//           const data = await 
-
-//       }
-//       getTrips();
-//   }, []);
-
+//get data
   useEffect(() => {
-    const unsubscribe = db
-      .collection("trips")
-      .onSnapshot((collection) => {
-        const data = collection.docs.map((doc) => ({ ...doc.data(), id: doc.id}));
-        setTrips(data);
-        console.log(data);
-      });
+    const unsubscribe = db.collection("trips").onSnapshot((collection) => {
+      const data = collection.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setTrips(data);
+      console.log(data);
+    
+    });
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    db.collection("trips").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id}`);
-<<<<<<< HEAD
-      
-        });
-      });
-   
-  }, []);
 
-
-
-=======
-        });
-        
-       
-      });
-
-  }, []);
-  
->>>>>>> 180c2b104e2f4ddd9799b440eae7c85d6c20e2f6
+  function renderItem({ item }) {
+    return (
+      <TouchableOpacity style={styles.tripContainer}
+        onPress={() => navigation.navigate("tripdetails", { id: item.id, country: item.country })}
+      >
+        <View>
+          <Text>{item.country}</Text>
+          <Text>{item.date}</Text>
+          <Text>{item.numberOfDays}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <View>
-     
       <TouchableOpacity
         style={styles.tripContainer}
         onPress={() => navigation.navigate("tripdetails")}
       >
         <View>
           <FlatList
-            style={styles.gridContainer}
+            keyExtractor={(item) => item.id}
             data={trips}
-            renderItem={(itemData) => (
-              <Text>
-                {itemData.item.country} {itemData.item.numberOfDays} days{" "}
-                {itemData.item.date}
-              </Text>
-            )}
+            renderItem={renderItem}
           />
         </View>
       </TouchableOpacity>
@@ -99,6 +79,6 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     padding: 30,
-    margin: 10,
+    margin: 20,
   },
 });

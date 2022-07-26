@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { auth } from "../database/firebase";
 
 export default function AddTrip({ navigation }) {
   const [country, setCountry] = useState("");
@@ -43,6 +44,7 @@ export default function AddTrip({ navigation }) {
       country: country,
       numberOfDays: numberOfDays,
       date: date,
+      
     });
 
     navigation.navigate("home");
@@ -55,6 +57,7 @@ export default function AddTrip({ navigation }) {
         onChangeText={(text) => {
           setCountry(text);
         }}
+        value={country}
       />
 
       <Button title="start date" onPress={() => setShow("date")} mode={mode} />
@@ -73,6 +76,7 @@ export default function AddTrip({ navigation }) {
         onChangeText={(text) => {
           setNumberOfDays(text);
         }}
+        value={numberOfDays}
       />
       <Button onPress={submitHandler} title="submit"></Button>
     </View>
