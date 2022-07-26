@@ -20,6 +20,15 @@ export default function AddTrip({ navigation }) {
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [endShow, setEndShow] = useState(false);
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const user = firebase.auth().currentUser;
+ 
+
+ 
+    setUser(user.email);
+  }, []);
 
   function onDateChange(event, selectedDate) {
     const currentDate = selectedDate || date;
@@ -58,12 +67,15 @@ export default function AddTrip({ navigation }) {
     setMode(currentMode);
   }
 
+
+//add trip
   async function submitHandler() {
     const newTrip = await firebase.firestore().collection("trips").doc().set({
       country: country,
     //   numberOfDays: numberOfDays,
       date: date,
-      endDate: endDate
+      endDate: endDate,
+      user: user
     });
 
     navigation.navigate("home");

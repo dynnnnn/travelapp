@@ -13,13 +13,22 @@ import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
 
-const db = firebase.firestore();
+
 
 function Home({ navigation }) {
   const db = firebase.firestore();
 
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
+  const [user, setUser] = useState("")
+
+//get user
+useEffect(() =>{
+    const user = firebase.auth().currentUser;
+    const email = user.email;
+    console.log(user.uid);
+    console.log(email);
+},[])
 
 
 //get data
@@ -29,12 +38,16 @@ function Home({ navigation }) {
         ...doc.data(),
         id: doc.id,
       }));
+      
       setTrips(data);
       console.log(data);
     
     });
     return () => unsubscribe();
   }, []);
+
+
+
 
 
   function renderItem({ item }) {
