@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useContext } from "react";
-import { auth } from "../database/firebase";
+
 import { LogInContext } from "../context/LogInContext";
 import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
@@ -30,8 +30,7 @@ function Home({ navigation }) {
     console.log(email);
     setUser(email);
   }, 
-  
-  
+
   []);
 
   //get all data
@@ -42,23 +41,16 @@ function Home({ navigation }) {
         id: doc.id,
       }));
       setTrips(data);
-     
-   
-
+  
     });
+    //filter data by user
     const userTrips = trips.filter((item) => item.user === user);
     setFilteredTrips(userTrips);
     return () => unsubscribe();
    
   }, [user, trips]);
 
-  
 
-  //get user specific data
-
-
-// const userTrips = trips.filter(trip => trip.user === user);
-// console.log(userTrips);
 
   function renderItem({ item }) {
     return (

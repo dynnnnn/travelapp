@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import Title from "../components/Title";
@@ -11,8 +11,11 @@ const TripDetails = ({ navigation, route }) => {
   const [id, setId] = useState("");
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [flightDetails, setFlightDetails] = useState([]);
 
-  async function getTrip() {
+
+
+  function getTrip() {
     const id = route.params.id;
     const country = route.params.country;
     const date = route.params.date;
@@ -25,7 +28,55 @@ const TripDetails = ({ navigation, route }) => {
 
   useEffect(() => {
     getTrip();
-  }, []);
+    getFlight();
+   
+  }, [id]);
+
+
+  //get data from firestore
+
+async function getFlight(){
+if (id){
+    await db.collection("trips").doc(id).collection("flights").onSnapshot((collection) => {
+    const data = collection.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    console.log(data);
+    setFlightDetails(data);
+})
+}
+}
+
+
+
+  function renderFlightDetails({ item }) {
+    return (
+      // <TouchableOpacity
+        
+      //   onPress={() =>
+      //     navigation.navigate("tripdetails", {
+      //       id: item.id,
+      //       startDest: item.startDest,
+      //       endDest: item.endDest,
+      //       flightDate: item.flightDate,
+      //       flightNumber: item.flightNumber
+      //     })
+      //   }
+      // >
+        <View>
+          <SmallHeading>{item.flightNumber}</SmallHeading>
+          <Text>
+            {item.startDest} to {item.endDest} {item.flightDate} 
+          </Text>
+        </View>
+      // </TouchableOpacity>
+    );
+  }
+
+
+
+
 
   async function deleteHandler(id) {
     await db.collection("trips").doc(id).delete();
@@ -40,9 +91,22 @@ const TripDetails = ({ navigation, route }) => {
         {date} to {endDate}
       </Text>
 
+ 
+
       <SmallHeading>Flight Details</SmallHeading>
 
+      <View>
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={flightDetails}
+            renderItem={renderFlightDetails}
+          />
+        </View>
+
+
+
       <Button
+
         title="add"
         onPress={() => navigation.navigate("chooseaddtype", { id: id })}
       />
@@ -72,4 +136,12 @@ const TripDetails = ({ navigation, route }) => {
 
 export default TripDetails;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  box:{
+
+    backgroundColor: 'grey',
+    borderRadius: 5,
+    width: 300,
+    height: 20
+  }
+});
