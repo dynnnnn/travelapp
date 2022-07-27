@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Title from '../components/Title';
 import firebase from 'firebase';
 

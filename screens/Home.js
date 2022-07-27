@@ -14,52 +14,70 @@ import { useEffect, useState } from "react";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 
-
-
 function Home({ navigation }) {
   const db = firebase.firestore();
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
+  // const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState("");
+  const [filteredTrips, setFilteredTrips] = useState([]);
 
-//get user
-useEffect(() =>{
+  //get user
+  useEffect(() => {
     const user = firebase.auth().currentUser;
     const email = user.email;
     console.log(user.uid);
     console.log(email);
-},[])
+    setUser(email);
+  }, 
+  
+  
+  []);
 
-
-//get data
+  //get all data
   useEffect(() => {
     const unsubscribe = db.collection("trips").onSnapshot((collection) => {
       const data = collection.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      
       setTrips(data);
-      console.log(data);
-    
+     
+   
+
     });
+    const userTrips = trips.filter((item) => item.user === user);
+    setFilteredTrips(userTrips);
     return () => unsubscribe();
-  }, []);
+   
+  }, [user, trips]);
+
+  
+
+  //get user specific data
 
 
-
-
+// const userTrips = trips.filter(trip => trip.user === user);
+// console.log(userTrips);
 
   function renderItem({ item }) {
     return (
-      <TouchableOpacity style={styles.tripContainer}
-        onPress={() => navigation.navigate("tripdetails", { id: item.id, country: item.country, date: item.date, endDate: item.endDate })}
+      <TouchableOpacity
+        style={styles.tripContainer}
+        onPress={() =>
+          navigation.navigate("tripdetails", {
+            id: item.id,
+            country: item.country,
+            date: item.date,
+            endDate: item.endDate,
+          })
+        }
       >
         <View>
           <SmallHeading>{item.country}</SmallHeading>
-          <Text>{item.date} to {item.endDate}</Text>
-      
+          <Text>
+            {item.date} to {item.endDate}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -67,7 +85,7 @@ useEffect(() =>{
 
   return (
     <View>
-    <Title>My Trips</Title>
+      <Title>My Trips</Title>
       <TouchableOpacity
         style={styles.tripContainer}
         onPress={() => navigation.navigate("tripdetails")}
@@ -75,10 +93,11 @@ useEffect(() =>{
         <View>
           <FlatList
             keyExtractor={(item) => item.id}
-            data={trips}
+            data={filteredTrips}
             renderItem={renderItem}
           />
         </View>
+        
       </TouchableOpacity>
 
       <Button title="Add Trip" onPress={() => navigation.navigate("addtrip")} />
