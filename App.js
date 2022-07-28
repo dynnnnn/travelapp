@@ -13,7 +13,8 @@ import AddFlight from "./screens/AddFlight";
 
 import { LogInContext } from "./context/LogInContext";
 import LoggedInBottomTab from "./stacks/LoggedInBottomTab";
-import Swiper from 'react-native-swiper';
+import Onboarding from 'react-native-onboarding-swiper';
+
 import { useFonts } from "expo-font";
 
 
