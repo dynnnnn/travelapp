@@ -12,8 +12,8 @@ const TripDetails = ({ navigation, route }) => {
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [flightDetails, setFlightDetails] = useState([]);
-
-
+  const [accomDetails, setAccomDetails] = useState([]);
+  const [attractionDetails, setAttractionDetails] = useState([]);
 
   function getTrip() {
     const id = route.params.id;
@@ -29,36 +29,83 @@ const TripDetails = ({ navigation, route }) => {
   useEffect(() => {
     getTrip();
     getFlight();
-   
+    getAccomodation();
+    getAttractions();
   }, [id]);
 
+  //get flight data from firestore
 
-  //get flight data from firestore (add try catch)
+  async function getFlight() {
+    if (id) {
+      try {
+        const unsubscribe = await db
+          .collection("trips")
+          .doc(id)
+          .collection("flights")
+          .onSnapshot((collection) => {
+            const data = collection.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+            // console.log(data);
+            setFlightDetails(data);
+          });
+        return () => unsubscribe();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
-async function getFlight(){
-if (id){
+  async function getAccomodation() {
+    if (id) {
+      try {
+        const unsubscribe = await db
+          .collection("trips")
+          .doc(id)
+          .collection("accomodation")
+          .onSnapshot((collection) => {
+            const data = collection.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
 
-  try{
-  const unsubscribe = await db.collection("trips").doc(id).collection("flights").onSnapshot((collection) => {
-    const data = collection.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    console.log(data);
-    setFlightDetails(data);
-});
-return () => unsubscribe();
-} catch (error) {
-  console.log(error);
-}
-}}
+            setAccomDetails(data);
+          });
+        return () => unsubscribe();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
 
+  async function getAttractions() {
+    if (id) {
+      try {
+        const unsubscribe = await db
+          .collection("trips")
+          .doc(id)
+          .collection("attractions")
+          .onSnapshot((collection) => {
+            const data = collection.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+
+            setAttractionDetails(data);
+          });
+        return () => unsubscribe();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   function renderFlightDetails({ item }) {
     return (
       // <TouchableOpacity
-        
+
       //   onPress={() =>
       //     navigation.navigate("tripdetails", {
       //       id: item.id,
@@ -69,20 +116,66 @@ return () => unsubscribe();
       //     })
       //   }
       // >
-        <View>
-          <SmallHeading>{item.flightNumber}</SmallHeading>
-          <Text>
-            {item.startDest} to {item.endDest} {item.flightDate} 
-          </Text>
-        </View>
+      <View>
+        <SmallHeading>{item.flightNumber}</SmallHeading>
+        <Text>
+          {item.startDest} to {item.endDest} {item.flightDate}
+        </Text>
+      </View>
+      // </TouchableOpacity>
+    );
+  }
+
+  function renderAccomDetails({ item }) {
+    return (
+      // <TouchableOpacity
+
+      //   onPress={() =>
+      //     navigation.navigate("tripdetails", {
+      //       id: item.id,
+      //       startDest: item.startDest,
+      //       endDest: item.endDest,
+      //       flightDate: item.flightDate,
+      //       flightNumber: item.flightNumber
+      //     })
+      //   }
+      // >
+      <View>
+        <SmallHeading>{item.name}</SmallHeading>
+        <Text>
+          {item.address} {item.date}
+        </Text>
+      </View>
       // </TouchableOpacity>
     );
   }
 
 
+  function renderAttractionDetails({ item }) {
+    return (
+      // <TouchableOpacity
 
+      //   onPress={() =>
+      //     navigation.navigate("tripdetails", {
+      //       id: item.id,
+      //       startDest: item.startDest,
+      //       endDest: item.endDest,
+      //       flightDate: item.flightDate,
+      //       flightNumber: item.flightNumber
+      //     })
+      //   }
+      // >
+      <View>
+        <SmallHeading>{item.description}</SmallHeading>
+        <Text>
+          {item.location} {item.date}
+        </Text>
+      </View>
+      // </TouchableOpacity>
+    );
+  }
 
-//delete trip
+  //delete trip
   async function deleteHandler(id) {
     await db.collection("trips").doc(id).delete();
     navigation.navigate("home");
@@ -96,22 +189,7 @@ return () => unsubscribe();
         {date} to {endDate}
       </Text>
 
- 
-
-      <SmallHeading>Flight Details</SmallHeading>
-
-      <View>
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={flightDetails}
-            renderItem={renderFlightDetails}
-          />
-        </View>
-
-
-
       <Button
-
         title="add"
         onPress={() => navigation.navigate("chooseaddtype", { id: id })}
       />
@@ -128,13 +206,37 @@ return () => unsubscribe();
         }
       />
 
+      <SmallHeading>Flight Details</SmallHeading>
+
+      <View>
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={flightDetails}
+          renderItem={renderFlightDetails}
+        />
+      </View>
+
+      <SmallHeading>Accomodation</SmallHeading>
+
+      <View>
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={accomDetails}
+          renderItem={renderAccomDetails}
+        />
+      </View>
+
+      <SmallHeading>Attractions</SmallHeading>
+
+      <View>
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={attractionDetails}
+          renderItem={renderAttractionDetails}
+        />
+      </View>
+
       <Button title="delete trip" onPress={() => deleteHandler(id)} />
-
-      <SmallHeading>Itinerary</SmallHeading>
-
-     
-
-
     </View>
   );
 };
@@ -142,11 +244,10 @@ return () => unsubscribe();
 export default TripDetails;
 
 const styles = StyleSheet.create({
-  box:{
-
-    backgroundColor: 'grey',
+  box: {
+    backgroundColor: "grey",
     borderRadius: 5,
     width: 300,
-    height: 20
-  }
+    height: 20,
+  },
 });

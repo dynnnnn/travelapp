@@ -11,7 +11,7 @@ const ChooseAddType = ({navigation, route}) => {
     <Title>Add Plan</Title>
       <Button title="add flight" onPress={() => navigation.navigate("addflight", { id: id })} />
       <Button title="add accomodation" onPress={() => navigation.navigate("addaccom", { id: id })} />
-      <Button title="add activity" onPress={() => navigation.navigate("addactivity", { id: id })} />
+      <Button title="add attraction" onPress={() => navigation.navigate("addattraction", { id: id })} />
 
     </View>
   )

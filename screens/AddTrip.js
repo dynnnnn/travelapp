@@ -76,8 +76,9 @@ export default function AddTrip({ navigation }) {
       endDate: endDate,
       user: user
     });
-
+    
     navigation.navigate("home");
+    return newTrip;
   }
 
   return (

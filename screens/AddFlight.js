@@ -38,8 +38,10 @@ const AddFlight = ({ route, navigation }) => {
         startDest: startDest,
         endDest: endDest,
       });
-
+    
     navigation.navigate("tripdetails");
+    return newTrip;
+
   }
 
   function onDateChange(event, selectedDate) {

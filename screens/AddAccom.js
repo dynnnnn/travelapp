@@ -51,11 +51,11 @@ const AddAccom = ({ navigation, route }) => {
   const id = route.params.id;
   console.log(id);
 
-    const newAccom = await db
-      .collection("trips")
-      .doc(id)
-      .collection(date)
-      .doc("accomodation")
+    const newAccom = await  db
+    .collection("trips")
+    .doc(id)
+    .collection("accomodation")
+    .doc()
       .set({
         date: accomDate,
         name: name,
@@ -63,6 +63,7 @@ const AddAccom = ({ navigation, route }) => {
       });
 
     navigation.navigate("tripdetails");
+    return newAccom;
   } catch(error){
     console.log(error);
   }
