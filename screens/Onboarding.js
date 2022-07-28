@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Helvetica',
     fontSize: 40,
-    color: '#FFFFFF'
+    color: '#00266B'
   },
   subTitleContainer: {
     width: 200,
