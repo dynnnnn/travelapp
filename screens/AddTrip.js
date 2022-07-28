@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { auth } from "../database/firebase";
+
 import Title from "../components/Title";
 
 export default function AddTrip({ navigation }) {
   const [country, setCountry] = useState("");
-//   const [numberOfDays, setNumberOfDays] = useState("");
+
   const [date, setDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [mode, setMode] = useState("date");
@@ -72,7 +72,6 @@ export default function AddTrip({ navigation }) {
   async function submitHandler() {
     const newTrip = await firebase.firestore().collection("trips").doc().set({
       country: country,
-    //   numberOfDays: numberOfDays,
       date: date,
       endDate: endDate,
       user: user

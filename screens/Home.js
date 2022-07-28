@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useContext } from "react";
-
 import { LogInContext } from "../context/LogInContext";
 import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
@@ -15,41 +14,59 @@ import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 
 function Home({ navigation }) {
+  const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const db = firebase.firestore();
 
-  // const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
   const [trips, setTrips] = useState([]);
   const [user, setUser] = useState("");
-  const [filteredTrips, setFilteredTrips] = useState([]);
 
-  //get user
+
+  // get user
+  // useEffect(() => {
+  //   const user = firebase.auth().currentUser;
+  //   const email = user.email;
+  //   setUser(email);
+
+  // }, [user]);
+
+ 
+
   useEffect(() => {
+    console.log("Setting up nav listener");
+    // Check for when we come back to this screen
+    const removeListener = navigation.addListener("focus", () => {
+      console.log("Running nav listener");
+      getData();
+    });
+    getData();
+    return removeListener;
+  }, [user]);
+
+  async function getData() {
     const user = firebase.auth().currentUser;
     const email = user.email;
-    console.log(user.uid);
-    console.log(email);
-    setUser(email);
-  }, 
+ 
+if (user){
 
-  []);
-
-  //get all data
-  useEffect(() => {
-    const unsubscribe = db.collection("trips").onSnapshot((collection) => {
-      const data = collection.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setTrips(data);
+        const unsubscribe = await db
+          .collection("trips")
+          .onSnapshot((collection) => {
+            const data = collection.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+            console.log(data);
+            setTrips(data.filter((item) => item.user === email));
+            
+          
+          });
   
-    });
-    //filter data by user
-    const userTrips = trips.filter((item) => item.user === user);
-    setFilteredTrips(userTrips);
-    return () => unsubscribe();
-   
-  }, [user, trips]);
-
+     
+        return () => unsubscribe();
+      }
+  }
+    
+  
 
 
   function renderItem({ item }) {
@@ -85,11 +102,10 @@ function Home({ navigation }) {
         <View>
           <FlatList
             keyExtractor={(item) => item.id}
-            data={filteredTrips}
+            data={trips}
             renderItem={renderItem}
           />
         </View>
-        
       </TouchableOpacity>
 
       <Button title="Add Trip" onPress={() => navigation.navigate("addtrip")} />

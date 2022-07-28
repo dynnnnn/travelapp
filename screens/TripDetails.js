@@ -33,20 +33,25 @@ const TripDetails = ({ navigation, route }) => {
   }, [id]);
 
 
-  //get data from firestore
+  //get flight data from firestore (add try catch)
 
 async function getFlight(){
 if (id){
-    await db.collection("trips").doc(id).collection("flights").onSnapshot((collection) => {
+
+  try{
+  const unsubscribe = await db.collection("trips").doc(id).collection("flights").onSnapshot((collection) => {
     const data = collection.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
     console.log(data);
     setFlightDetails(data);
-})
+});
+return () => unsubscribe();
+} catch (error) {
+  console.log(error);
 }
-}
+}}
 
 
 
@@ -77,7 +82,7 @@ if (id){
 
 
 
-
+//delete trip
   async function deleteHandler(id) {
     await db.collection("trips").doc(id).delete();
     navigation.navigate("home");

@@ -19,7 +19,7 @@ const AddFlight = ({ route, navigation }) => {
   function getTrip() {
     const id = route.params.id;
     setId(id);
-    console.log(id);
+
   }
 
   useEffect(() => {
