@@ -52,7 +52,7 @@ function LogIn({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text > Welcome</Text>
+      <Text > Hi Gorgeous!</Text>
       <Text style={styles.title}>{isLogIn ? "Log In" : "Sign Up"}</Text>
       <TextInput
         placeholder="email"
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 100,
   },
   button: {
-    backgroundColor: "black",
+    backgroundColor: "#00266B",
     borderRadius: 10,
     width: 300,
     alignItems: "center",
