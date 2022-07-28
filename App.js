@@ -13,6 +13,7 @@ import AddFlight from "./screens/AddFlight";
 
 import { LogInContext } from "./context/LogInContext";
 import LoggedInBottomTab from "./stacks/LoggedInBottomTab";
+import Swiper from 'react-native-swiper';
 
 const Stack = createNativeStackNavigator();
 
