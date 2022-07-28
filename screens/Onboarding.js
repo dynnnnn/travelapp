@@ -13,3 +13,5 @@ import Swiper from 'react-native-swiper';
 
 const { width, height } = Dimensions.get('window');
 
+
+
