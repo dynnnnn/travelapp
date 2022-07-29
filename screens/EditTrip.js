@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "firebase";
-
+import { monthNames } from "../constants/Month";
 
 
 const EditTrip = ({ navigation, route }) => {
@@ -41,9 +41,9 @@ function getTrip() {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
     console.log(fDate);
     setDate(fDate);
@@ -57,9 +57,9 @@ function getTrip() {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
     console.log(fDate);
     setEndDate(fDate);

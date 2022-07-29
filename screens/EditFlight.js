@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, FlatList, Button } from "react-native";
+import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
-import { TouchableOpacity } from "react-native-web";
+import { monthNames } from "../constants/Month";
 
 const EditFlight = ({ navigation, route }) => {
   const db = firebase.firestore();

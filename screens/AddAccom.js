@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import firebase from "firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { monthNames } from "../constants/Month";
 
 const db = firebase.firestore();
 
@@ -26,9 +27,9 @@ const AddAccom = ({ navigation, route }) => {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
 
       let dateid =

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Title from "../components/Title";
 import firebase from "firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { monthNames } from "../constants/Month";
 
 const db = firebase.firestore();
 
@@ -40,9 +41,9 @@ const AddActivity = ({ navigation, route }) => {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
 
     setAttractionDate(fDate);

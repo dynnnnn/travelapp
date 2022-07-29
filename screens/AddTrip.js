@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { monthNames } from "../constants/Month";
 
 import Title from "../components/Title";
 
@@ -24,9 +25,7 @@ export default function AddTrip({ navigation }) {
 
   useEffect(() => {
     const user = firebase.auth().currentUser;
- 
 
- 
     setUser(user.email);
   }, []);
 
@@ -38,9 +37,9 @@ export default function AddTrip({ navigation }) {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
     console.log(fDate);
     setDate(fDate);
@@ -54,9 +53,9 @@ export default function AddTrip({ navigation }) {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
     console.log(fDate);
     setEndDate(fDate);
@@ -67,16 +66,15 @@ export default function AddTrip({ navigation }) {
     setMode(currentMode);
   }
 
-
-//add trip
+  //add trip
   async function submitHandler() {
     const newTrip = await firebase.firestore().collection("trips").doc().set({
       country: country,
       date: date,
       endDate: endDate,
-      user: user
+      user: user,
     });
-    
+
     navigation.navigate("home");
     return newTrip;
   }

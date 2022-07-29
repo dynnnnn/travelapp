@@ -95,7 +95,7 @@ const TripDetails = ({ navigation, route }) => {
 
 
   function renderFlightDetails({ item }) {
-    const id = route.params.id;
+ 
     return (
 
       <TouchableOpacity

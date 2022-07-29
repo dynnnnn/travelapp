@@ -4,6 +4,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 import firebase from "../database/firebase";
 import Title from "../components/Title";
+import { monthNames } from "../constants/Month";
 
 const db = firebase.firestore();
 
@@ -52,9 +53,9 @@ const AddFlight = ({ route, navigation }) => {
     let tempDate = new Date(currentDate);
     let fDate =
       tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
+      " " +
+      monthNames[tempDate.getMonth()] +
+      " " +
       tempDate.getFullYear();
 
     setFlightDate(fDate);
