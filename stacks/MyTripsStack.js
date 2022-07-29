@@ -5,6 +5,9 @@ import AddFlight from '../screens/AddFlight';
 
 import AddTrip from '../screens/AddTrip';
 import ChooseAddType from '../screens/ChooseAddType';
+import EditAccom from '../screens/EditAccom';
+import EditAttraction from '../screens/EditAttraction';
+import EditFlight from '../screens/EditFlight';
 import EditTrip from '../screens/EditTrip';
 import Home from '../screens/Home';
 import TripDetails from '../screens/TripDetails';
@@ -26,6 +29,10 @@ export default function TripStack({navigation}) {
    
       <Stack.Screen name="addaccom" component={AddAccom} options={{ headerShown: false }} />
       <Stack.Screen name="addattraction" component={AddAttraction} options={{ headerShown: false }} />
+
+      <Stack.Screen name="editflight" component={EditFlight} options={{ headerShown: false }} />
+      <Stack.Screen name="editaccom" component={EditAccom} options={{ headerShown: false }} />
+      <Stack.Screen name="editattraction" component={EditAttraction} options={{ headerShown: false }} />
      
      
     
