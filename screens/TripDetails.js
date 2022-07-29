@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, Button, FlatList, SectionList, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Button, FlatList, SectionList, SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
+
 
 const TripDetails = ({ navigation, route }) => {
   const db = firebase.firestore();
@@ -94,7 +95,23 @@ const TripDetails = ({ navigation, route }) => {
 
 
   function renderFlightDetails({ item }) {
+    const id = route.params.id;
     return (
+
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() =>
+          navigation.navigate("flightdetails", {
+            id: item.id,
+            flightNumber: item.flightNumber,
+            startDest: item.startDest,
+            endDest: item.endDest,
+            flightDate: item.flightDate,
+            tripId: id
+           
+          })
+        }
+      >
   
       <View>
         <SmallHeading>{item.flightNumber}</SmallHeading>
@@ -102,6 +119,7 @@ const TripDetails = ({ navigation, route }) => {
           {item.startDest} to {item.endDest} {item.flightDate}
         </Text>
       </View>
+      </TouchableOpacity>
       
     );
   }
@@ -165,7 +183,7 @@ const TripDetails = ({ navigation, route }) => {
   
       <View style={styles.box}>
         <SmallHeading>Flight Details</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editflight", {id: id})}/>
+        {/* <Button title="edit" onPress={() => navigation.navigate("editflight", {id: id})}/> */}
 
         <FlatList
           keyExtractor={(item) => item.id}
@@ -176,7 +194,7 @@ const TripDetails = ({ navigation, route }) => {
 
       <View style={styles.box}>
         <SmallHeading>Accomodation</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editaccom", {id: id})}/>
+        {/* <Button title="edit" onPress={() => navigation.navigate("editaccom", {id: id})}/> */}
 
         <FlatList
           keyExtractor={(item) => item.id}
@@ -187,7 +205,7 @@ const TripDetails = ({ navigation, route }) => {
 
       <View style={styles.box}>
         <SmallHeading>Attractions</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editattraction", {id: id})}/>
+        {/* <Button title="edit" onPress={() => navigation.navigate("editattraction", {id: id})}/> */}
 
         <FlatList
           keyExtractor={(item) => item.id}
@@ -209,5 +227,9 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     borderRadius: 5,
     margin: 20,
+  },
+  container: {
+    padding: 10,
+    margin: 10,
   },
 });

@@ -23,12 +23,10 @@ const EditTrip = ({ navigation, route }) => {
 function getTrip() {
     const id = route.params.id;
     const country = route.params.country;
-    // const date = route.params.date;
-    // const endDate = route.params.endDate;
+
     setCountry(country);
     setId(id);
-    // setDate(date);
-    // setEndDate(endDate);
+  
   }
 
   useEffect(() => {
@@ -104,7 +102,7 @@ function getTrip() {
         value={country}
       />
 
-      {/* <Text>{date} to {endDate}</Text> */}
+  
 
       <Button title="start date" onPress={() => setShow("date")} mode={mode} />
 
