@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import { StyleSheet, Text, View, Button, FlatList, SectionList, SafeAreaView } from "react-native";
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import Title from "../components/Title";
@@ -79,7 +79,6 @@ const TripDetails = ({ navigation, route }) => {
     }
   }
 
-
   async function getAttractions() {
     if (id) {
       try {
@@ -104,74 +103,40 @@ const TripDetails = ({ navigation, route }) => {
 
   function renderFlightDetails({ item }) {
     return (
-      // <TouchableOpacity
-
-      //   onPress={() =>
-      //     navigation.navigate("tripdetails", {
-      //       id: item.id,
-      //       startDest: item.startDest,
-      //       endDest: item.endDest,
-      //       flightDate: item.flightDate,
-      //       flightNumber: item.flightNumber
-      //     })
-      //   }
-      // >
+  
       <View>
         <SmallHeading>{item.flightNumber}</SmallHeading>
         <Text>
           {item.startDest} to {item.endDest} {item.flightDate}
         </Text>
       </View>
-      // </TouchableOpacity>
+      
     );
   }
 
   function renderAccomDetails({ item }) {
     return (
-      // <TouchableOpacity
-
-      //   onPress={() =>
-      //     navigation.navigate("tripdetails", {
-      //       id: item.id,
-      //       startDest: item.startDest,
-      //       endDest: item.endDest,
-      //       flightDate: item.flightDate,
-      //       flightNumber: item.flightNumber
-      //     })
-      //   }
-      // >
+ 
       <View>
         <SmallHeading>{item.name}</SmallHeading>
         <Text>
           {item.address} {item.date}
         </Text>
       </View>
-      // </TouchableOpacity>
+   
     );
   }
 
-
   function renderAttractionDetails({ item }) {
     return (
-      // <TouchableOpacity
-
-      //   onPress={() =>
-      //     navigation.navigate("tripdetails", {
-      //       id: item.id,
-      //       startDest: item.startDest,
-      //       endDest: item.endDest,
-      //       flightDate: item.flightDate,
-      //       flightNumber: item.flightNumber
-      //     })
-      //   }
-      // >
+  
       <View>
         <SmallHeading>{item.description}</SmallHeading>
         <Text>
           {item.location} {item.date}
         </Text>
       </View>
-      // </TouchableOpacity>
+     
     );
   }
 
@@ -182,7 +147,7 @@ const TripDetails = ({ navigation, route }) => {
   }
 
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <Title>{country}</Title>
       <Text>
         {" "}
@@ -205,10 +170,11 @@ const TripDetails = ({ navigation, route }) => {
           })
         }
       />
+  
+      <View style={styles.box}>
+        <SmallHeading>Flight Details</SmallHeading>
+        <Button title="edit" onPress={() => navigation.navigate("editflight")}/>
 
-      <SmallHeading>Flight Details</SmallHeading>
-
-      <View>
         <FlatList
           keyExtractor={(item) => item.id}
           data={flightDetails}
@@ -216,9 +182,10 @@ const TripDetails = ({ navigation, route }) => {
         />
       </View>
 
-      <SmallHeading>Accomodation</SmallHeading>
+      <View style={styles.box}>
+        <SmallHeading>Accomodation</SmallHeading>
+        <Button title="edit" onPress={() => navigation.navigate("editaccom")}/>
 
-      <View>
         <FlatList
           keyExtractor={(item) => item.id}
           data={accomDetails}
@@ -226,18 +193,20 @@ const TripDetails = ({ navigation, route }) => {
         />
       </View>
 
-      <SmallHeading>Attractions</SmallHeading>
+      <View style={styles.box}>
+        <SmallHeading>Attractions</SmallHeading>
+        <Button title="edit" onPress={() => navigation.navigate("editattraction")}/>
 
-      <View>
         <FlatList
           keyExtractor={(item) => item.id}
           data={attractionDetails}
           renderItem={renderAttractionDetails}
         />
       </View>
+  
 
       <Button title="delete trip" onPress={() => deleteHandler(id)} />
-    </View>
+      </SafeAreaView>
   );
 };
 
@@ -245,9 +214,8 @@ export default TripDetails;
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: "grey",
+    backgroundColor: "lightgrey",
     borderRadius: 5,
-    width: 300,
-    height: 20,
+    margin: 20,
   },
 });
