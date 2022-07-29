@@ -28,78 +28,70 @@ const TripDetails = ({ navigation, route }) => {
 
   useEffect(() => {
     getTrip();
-    getFlight();
-    getAccomodation();
-    getAttractions();
+  }, [id]);
+  
+
+  // Fligts collection
+  useEffect(() => {
+
+    if (id) {
+    const unsubscribe = db
+    .collection("trips")
+    .doc(id)
+    .collection("flights")
+    .onSnapshot((collection) => {
+      const data = collection.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setFlightDetails(data);
+    });
+    return () => unsubscribe();
+  }
+  
   }, [id]);
 
-  //get flight data from firestore
 
-  async function getFlight() {
+  // Accom collection
+  useEffect(() => {
     if (id) {
-      try {
-        const unsubscribe = await db
-          .collection("trips")
-          .doc(id)
-          .collection("flights")
-          .onSnapshot((collection) => {
-            const data = collection.docs.map((doc) => ({
-              ...doc.data(),
-              id: doc.id,
-            }));
-            // console.log(data);
-            setFlightDetails(data);
-          });
-        return () => unsubscribe();
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    const unsubscribe = db
+    .collection("trips")
+    .doc(id)
+    .collection("accomodation")
+    .onSnapshot((collection) => {
+      const data = collection.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setAccomDetails(data);
+    });
+    return () => unsubscribe();
   }
+  
+  }, [id]);
 
-  async function getAccomodation() {
+
+   // Attractions collection
+   useEffect(() => {
     if (id) {
-      try {
-        const unsubscribe = await db
-          .collection("trips")
-          .doc(id)
-          .collection("accomodation")
-          .onSnapshot((collection) => {
-            const data = collection.docs.map((doc) => ({
-              ...doc.data(),
-              id: doc.id,
-            }));
-
-            setAccomDetails(data);
-          });
-        return () => unsubscribe();
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    const unsubscribe = db
+    .collection("trips")
+    .doc(id)
+    .collection("attractions")
+    .onSnapshot((collection) => {
+      const data = collection.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setAttractionDetails(data);
+    });
+    return () => unsubscribe();
   }
+  
+  }, [id]);
 
-  async function getAttractions() {
-    if (id) {
-      try {
-        const unsubscribe = await db
-          .collection("trips")
-          .doc(id)
-          .collection("attractions")
-          .onSnapshot((collection) => {
-            const data = collection.docs.map((doc) => ({
-              ...doc.data(),
-              id: doc.id,
-            }));
 
-            setAttractionDetails(data);
-          });
-        return () => unsubscribe();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
 
   function renderFlightDetails({ item }) {
     return (
@@ -173,7 +165,7 @@ const TripDetails = ({ navigation, route }) => {
   
       <View style={styles.box}>
         <SmallHeading>Flight Details</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editflight")}/>
+        <Button title="edit" onPress={() => navigation.navigate("editflight", {id: id})}/>
 
         <FlatList
           keyExtractor={(item) => item.id}
@@ -184,7 +176,7 @@ const TripDetails = ({ navigation, route }) => {
 
       <View style={styles.box}>
         <SmallHeading>Accomodation</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editaccom")}/>
+        <Button title="edit" onPress={() => navigation.navigate("editaccom", {id: id})}/>
 
         <FlatList
           keyExtractor={(item) => item.id}
@@ -195,7 +187,7 @@ const TripDetails = ({ navigation, route }) => {
 
       <View style={styles.box}>
         <SmallHeading>Attractions</SmallHeading>
-        <Button title="edit" onPress={() => navigation.navigate("editattraction")}/>
+        <Button title="edit" onPress={() => navigation.navigate("editattraction", {id: id})}/>
 
         <FlatList
           keyExtractor={(item) => item.id}

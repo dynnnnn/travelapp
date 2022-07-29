@@ -7,37 +7,85 @@ import firebase from "firebase";
 
 
 const EditTrip = ({ navigation, route }) => {
+ 
   const [country, setCountry] = useState("");
   const [id, setId] = useState("");
-  const [date, setDate] = useState(date);
-  const [endDate, setEndDate] = useState(endDate);
+  const [date, setDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+  const [endShow, setEndShow] = useState(false);
+  
+  
  
 
-  async function getTrip() {
+function getTrip() {
     const id = route.params.id;
     const country = route.params.country;
-    const date = route.params.date;
-    const endDate = route.params.endDate;
+    // const date = route.params.date;
+    // const endDate = route.params.endDate;
     setCountry(country);
     setId(id);
-    setDate(date);
-    setEndDate(endDate);
+    // setDate(date);
+    // setEndDate(endDate);
   }
 
   useEffect(() => {
     getTrip();
   }, []);
 
+  function onDateChange(event, selectedDate) {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getFullYear();
+    console.log(fDate);
+    setDate(fDate);
+  }
+
+  function onEndDateChange(event, selectedDate) {
+    const currentDate = selectedDate || endDate;
+    setEndShow(Platform.OS === "ios");
+    setEndDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getFullYear();
+    console.log(fDate);
+    setEndDate(fDate);
+  }
+
+  function showMode(currentMode) {
+    setShow(true);
+    setMode(currentMode);
+  }
+
+
+
+
+
+
 
 
   async function updateHandler(){
     const newTrip = await firebase.firestore().collection("trips").doc(id).update({
         country: country,
-      //   numberOfDays: numberOfDays,
         date: date,
         endDate: endDate
       });
-      navigation.navigate("tripdetails")
+      navigation.navigate("home")
   
   }
 
@@ -56,7 +104,32 @@ const EditTrip = ({ navigation, route }) => {
         value={country}
       />
 
-      <Text>{date}</Text>
+      {/* <Text>{date} to {endDate}</Text> */}
+
+      <Button title="start date" onPress={() => setShow("date")} mode={mode} />
+
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          is24Hour={true}
+          display="default"
+          onChange={onDateChange}
+        />
+      )}
+
+      <Button title="end date" onPress={() => setEndShow("date")} mode={mode} />
+
+      {endShow && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={endDate}
+          is24Hour={true}
+          display="default"
+          onChange={onEndDateChange}
+        />
+      )}
+
 
 
       <Button onPress={updateHandler} title="submit"></Button>
