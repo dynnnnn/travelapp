@@ -103,9 +103,9 @@ export const darkStyles = {
 
   headerTitle: {
     fontSize: 40,
-    fontFamily:"Aldo-Pro",
+    fontFamily:"BandaNova",
     alignItems: "center",
-    color: "white"
+    color: "#FFFFFF",
   },
   
  headerTint: "#00266B",
