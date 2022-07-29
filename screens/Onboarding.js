@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   title: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'BandaNova',
     fontSize: 40,
     color: '#00266B'
   },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   subtitle: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'BandaNova',
     fontSize: 24,
     color: '#FFFFFF'
   },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   signup: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'BandaNova',
     fontWeight: 'bold',
     fontSize: 20,
     color: '#00266B'
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     borderWidth: 2
   },
   login: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'BandaNova',
     fontWeight: 'bold',
     fontSize: 20,
     color: '#00266B'
