@@ -35,7 +35,7 @@ function Home({ navigation }) {
     console.log("Setting up nav listener");
     // Check for when we come back to this screen
     const removeListener = navigation.addListener("focus", () => {
-      console.log("Running nav listener");
+   
       getData();
     });
     getData();
@@ -95,18 +95,35 @@ if (user){
   return (
     <View>
       <Title>My Trips</Title>
-      <TouchableOpacity
-        style={styles.tripContainer}
-        onPress={() => navigation.navigate("tripdetails")}
-      >
-        <View>
+    
+        {/* <View>
           <FlatList
             keyExtractor={(item) => item.id}
             data={trips}
             renderItem={renderItem}
           />
+        </View> */}
+
+        {trips.map((trip) =>  <TouchableOpacity
+        key={trip.id}
+        style={styles.tripContainer}
+        onPress={() =>
+          navigation.navigate("tripdetails", {
+            id: trip.id,
+            country: trip.country,
+            date: trip.date,
+            endDate: trip.endDate,
+          })
+        }
+      >
+        <View>
+          <SmallHeading>{trip.country}</SmallHeading>
+          <Text>
+            {trip.date} to {trip.endDate}
+          </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity>)}
+
 
       <Button title="Add Trip" onPress={() => navigation.navigate("addtrip")} />
     </View>

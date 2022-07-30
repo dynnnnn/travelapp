@@ -55,11 +55,12 @@ const FlightDetails = ({ navigation, route}) => {
 
       <Text>{flightId}</Text>
 <Button title="edit" onPress={()=> navigation.navigate("editflight", {
-            id: id,
+            id: flightId,
             flightNumber: flightNumber,
             startDest: startDest,
             endDest: endDest,
-            flightDate: flightDate
+            flightDate: flightDate,
+            tripId: tripId
            
           })}/>
 <Button title="delete" onPress={() =>deleteFlightHandler(flightId)}/>

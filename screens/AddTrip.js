@@ -10,6 +10,7 @@ import {
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { monthNames } from "../constants/Month";
+import { days } from "../constants/Month";
 
 import Title from "../components/Title";
 
@@ -36,6 +37,7 @@ export default function AddTrip({ navigation }) {
 
     let tempDate = new Date(currentDate);
     let fDate =
+    days[tempDate.getDay()] + ", " +
       tempDate.getDate() +
       " " +
       monthNames[tempDate.getMonth()] +
@@ -52,6 +54,7 @@ export default function AddTrip({ navigation }) {
 
     let tempDate = new Date(currentDate);
     let fDate =
+    days[tempDate.getDay()] + ", " +
       tempDate.getDate() +
       " " +
       monthNames[tempDate.getMonth()] +

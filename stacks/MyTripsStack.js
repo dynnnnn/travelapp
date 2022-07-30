@@ -12,6 +12,8 @@ import EditTrip from '../screens/EditTrip';
 import FlightDetails from '../screens/FlightDetails';
 import Home from '../screens/Home';
 import TripDetails from '../screens/TripDetails';
+import AccomDetails from '../screens/AccomDetails';
+import AttractionDetails from '../screens/AttractionDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +34,8 @@ export default function TripStack({navigation}) {
       <Stack.Screen name="addattraction" component={AddAttraction} options={{ headerShown: false }} />
 
       <Stack.Screen name="flightdetails" component={FlightDetails} options={{ headerShown: false }} />
+      <Stack.Screen name="accomdetails" component={AccomDetails} options={{ headerShown: false }} />
+      <Stack.Screen name="attractiondetails" component={AttractionDetails} options={{ headerShown: false }} />
 
       <Stack.Screen name="editflight" component={EditFlight} options={{ headerShown: false }} />
       <Stack.Screen name="editaccom" component={EditAccom} options={{ headerShown: false }} />
