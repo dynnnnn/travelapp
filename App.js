@@ -15,7 +15,7 @@ import { LogInContext } from "./context/LogInContext";
 import LoggedInBottomTab from "./stacks/LoggedInBottomTab";
 import Onboarding from 'react-native-onboarding-swiper';
 
-import { Fonts } from 'expo';
+import { useFonts } from 'expo-fonts';
 
 
 const Stack = createNativeStackNavigator();
