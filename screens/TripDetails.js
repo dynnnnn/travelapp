@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
+import moment from "moment";
 
 const TripDetails = ({ navigation, route }) => {
   const db = firebase.firestore();
@@ -163,7 +164,8 @@ const TripDetails = ({ navigation, route }) => {
                 accomId: item.id,
                 name: item.name,
                 address: item.address,
-                date: item.date,
+                date: moment(item.date.toDate()).format('DD MMMM YYYY'),
+                endDate: moment(item.endDate.toDate()).format('DD MMMM YYYY'),
                 tripId: id,
               })
             }
@@ -171,7 +173,7 @@ const TripDetails = ({ navigation, route }) => {
             <View>
               <SmallHeading>{item.name}</SmallHeading>
               <Text>
-                {item.address} {item.date}
+              {moment(item.date.toDate()).format('DD MMMM YYYY')} to {moment(item.endDate.toDate()).format('DD MMMM YYYY')}
               </Text>
             </View>
           </TouchableOpacity>

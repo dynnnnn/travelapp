@@ -8,7 +8,8 @@ import { monthNames } from "../constants/Month";
 const db = firebase.firestore();
 
 const AddAccom = ({ navigation, route }) => {
-  const [date, setDate] = useState(new Date());
+
+
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
 
@@ -17,6 +18,7 @@ const AddAccom = ({ navigation, route }) => {
   const [show, setShow] = useState(false);
 
   const [accomDate, setAccomDate] = useState(new Date());
+  const [accomEndDate, setAccomEndDate] = useState(new Date());
   
 
   function onDateChange(event, selectedDate) {
@@ -25,19 +27,23 @@ const AddAccom = ({ navigation, route }) => {
     setAccomDate(currentDate);
 
     let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-
-      let dateid =
-      tempDate.getDate()
-
-    setAccomDate(fDate);
-    setDate(dateid.toString())
+  
+    setAccomDate(tempDate);
+   
   }
+
+  function onEndDateChange(event, selectedDate) {
+    const currentDate = selectedDate || accomEndDate;
+    setShow(Platform.OS === "ios");
+    setAccomEndDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+  
+    setAccomEndDate(tempDate);
+   
+  }
+
+
 
   function showMode(currentMode) {
     setShow(true);
@@ -61,6 +67,7 @@ const AddAccom = ({ navigation, route }) => {
         date: accomDate,
         name: name,
         address: address,
+        endDate: accomEndDate
       });
 
     navigation.navigate("tripdetails");
@@ -77,13 +84,7 @@ const AddAccom = ({ navigation, route }) => {
     <View>
       <Title>Add Accomodation</Title>
 
-      {/* <TextInput
-        placeholder="date"
-        value={date}
-        onChangeText={(text) => {
-          setDate(text);
-        }}
-      /> */}
+  
 
 <Button title="date" onPress={() => setShow("date")} mode={mode} />
 
@@ -94,6 +95,19 @@ const AddAccom = ({ navigation, route }) => {
     is24Hour={true}
     display="default"
     onChange={onDateChange}
+  />
+)}
+
+
+<Button title="end date" onPress={() => setShow("date")} mode={mode} />
+
+{show && (
+  <DateTimePicker
+    testID="dateTimePicker"
+    value={accomEndDate}
+    is24Hour={true}
+    display="default"
+    onChange={onEndDateChange}
   />
 )}
 
