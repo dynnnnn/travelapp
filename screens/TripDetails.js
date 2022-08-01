@@ -22,6 +22,7 @@ const TripDetails = ({ navigation, route }) => {
   const [flightDetails, setFlightDetails] = useState([]);
   const [accomDetails, setAccomDetails] = useState([]);
   const [attractionDetails, setAttractionDetails] = useState([]);
+  
 
   function getTrip() {
     const id = route.params.id;
@@ -37,6 +38,13 @@ const TripDetails = ({ navigation, route }) => {
   useEffect(() => {
     getTrip();
   }, [id]);
+
+ 
+
+ 
+
+
+
 
   // Fligts collection
   useEffect(() => {
@@ -102,9 +110,10 @@ const TripDetails = ({ navigation, route }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Title>{country}</Title>
+      
       <Text>
-        {" "}
-        {date} to {endDate}
+     
+       {date} to {endDate}
       </Text>
 
       <Button

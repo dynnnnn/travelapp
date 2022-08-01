@@ -35,16 +35,9 @@ export default function AddTrip({ navigation }) {
     setShow(Platform.OS === "ios");
     setDate(currentDate);
 
-    let tempDate = new Date(currentDate);
-    let fDate =
-    days[tempDate.getDay()] + ", " +
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-    console.log(fDate);
-    setDate(fDate);
+    let date = new Date(currentDate);
+  
+    setDate(date);
   }
 
   function onEndDateChange(event, selectedDate) {
@@ -52,16 +45,9 @@ export default function AddTrip({ navigation }) {
     setEndShow(Platform.OS === "ios");
     setEndDate(currentDate);
 
-    let tempDate = new Date(currentDate);
-    let fDate =
-    days[tempDate.getDay()] + ", " +
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-    console.log(fDate);
-    setEndDate(fDate);
+    let date = new Date(currentDate);
+    
+    setEndDate(date);
   }
 
   function showMode(currentMode) {
@@ -118,13 +104,7 @@ export default function AddTrip({ navigation }) {
         />
       )}
 
-      {/* <TextInput
-        placeholder="number of days"
-        onChangeText={(text) => {
-          setNumberOfDays(text);
-        }}
-        value={numberOfDays}
-      /> */}
+     
       <Button onPress={submitHandler} title="submit"></Button>
     </View>
   );

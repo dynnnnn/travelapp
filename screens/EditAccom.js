@@ -94,7 +94,16 @@ async function updateHandler() {
   return (
     <View>
       <Title>Edit Accom</Title>
-      <Text> {accomDetails.name}</Text>
+     
+
+
+      <TextInput
+        placeholder="Accomodation Name"
+        onChangeText={(text) => {
+          setAccomDetails({  ...accomDetails, name : text} );
+        }}
+        value={accomDetails.name}
+      />
 
       <Button title="start date" onPress={() => setShow("date")} mode={mode} />
 
@@ -119,6 +128,14 @@ async function updateHandler() {
     onChange={onEndDateChange}
   />
 )}
+
+<TextInput
+        placeholder="Address"
+        onChangeText={(text) => {
+          setAccomDetails({  ...accomDetails, address : text} );
+        }}
+        value={accomDetails.address}
+      />
 
 
 <Button title="update" onPress={updateHandler} /> 

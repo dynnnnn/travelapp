@@ -12,6 +12,7 @@ import firebase from "../database/firebase";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
+import moment from "moment";
 
 function Home({ navigation }) {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
@@ -69,40 +70,13 @@ if (user){
   
 
 
-  function renderItem({ item }) {
-    return (
-      <TouchableOpacity
-        style={styles.tripContainer}
-        onPress={() =>
-          navigation.navigate("tripdetails", {
-            id: item.id,
-            country: item.country,
-            date: item.date,
-            endDate: item.endDate,
-          })
-        }
-      >
-        <View>
-          <SmallHeading>{item.country}</SmallHeading>
-          <Text>
-            {item.date} to {item.endDate}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
+ 
 
   return (
     <View>
       <Title>My Trips</Title>
     
-        {/* <View>
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={trips}
-            renderItem={renderItem}
-          />
-        </View> */}
+      
 
         {trips.map((trip) =>  <TouchableOpacity
         key={trip.id}
@@ -111,15 +85,15 @@ if (user){
           navigation.navigate("tripdetails", {
             id: trip.id,
             country: trip.country,
-            date: trip.date,
-            endDate: trip.endDate,
+            date: moment(trip.date.toDate()).format('DD MMMM YYYY'),
+            endDate: moment(trip.endDate.toDate()).format('DD MMMM YYYY'),
           })
         }
       >
         <View>
           <SmallHeading>{trip.country}</SmallHeading>
           <Text>
-            {trip.date} to {trip.endDate}
+          {moment(trip.date.toDate()).format('DD MMMM YYYY')} to {moment(trip.endDate.toDate()).format('DD MMMM YYYY')}
           </Text>
         </View>
       </TouchableOpacity>)}

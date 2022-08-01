@@ -3,113 +3,83 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "firebase";
-import { monthNames } from "../constants/Month";
-
 
 const EditTrip = ({ navigation, route }) => {
- 
-  const [country, setCountry] = useState("");
-  const [id, setId] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [endShow, setEndShow] = useState(false);
-  
-  
- 
+  const [tripDetails, setTripDetails] = useState({});
+  const db = firebase.firestore();
 
-function getTrip() {
-    const id = route.params.id;
-    const country = route.params.country;
+  const id = route.params.id;
 
-    setCountry(country);
-    setId(id);
-  
+  //get Trip Details
+  async function getTripDetails() {
+    if (id) {
+      const doc = await db.collection("trips").doc(id).get();
+
+      const trip = doc.data();
+      setTripDetails(trip);
+    }
   }
 
   useEffect(() => {
-    getTrip();
-  }, []);
+    getTripDetails();
+  }, [id]);
 
   function onDateChange(event, selectedDate) {
-    const currentDate = selectedDate || date;
+    const currentDate =
+      selectedDate || new Date(tripDetails.date.seconds * 1000);
     setShow(Platform.OS === "ios");
-    setDate(currentDate);
+    setTripDetails({ ...tripDetails, date: currentDate });
 
-    let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-    console.log(fDate);
-    setDate(fDate);
+    let newDate = new Date(currentDate);
+
+    setTripDetails({ ...tripDetails, date: newDate });
   }
 
   function onEndDateChange(event, selectedDate) {
-    const currentDate = selectedDate || endDate;
+    const currentDate =
+      selectedDate || new Date(tripDetails.endDate.seconds * 1000);
     setEndShow(Platform.OS === "ios");
-    setEndDate(currentDate);
+    setTripDetails({ ...tripDetails, endDate: currentDate });
 
-    let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-    console.log(fDate);
-    setEndDate(fDate);
+    let newEndDate = new Date(currentDate);
+
+    setTripDetails({ ...tripDetails, endDate: newEndDate });
   }
 
-  function showMode(currentMode) {
-    setShow(true);
-    setMode(currentMode);
-  }
-
-
-
-
-
-
-
-
-  async function updateHandler(){
-    const newTrip = await firebase.firestore().collection("trips").doc(id).update({
-        country: country,
-        date: date,
-        endDate: endDate
+  async function updateHandler() {
+    const newTrip = await firebase
+      .firestore()
+      .collection("trips")
+      .doc(id)
+      .update({
+        country: tripDetails.country,
+        date: tripDetails.date,
+        endDate: tripDetails.endDate,
       });
-      navigation.navigate("home")
-  
+    navigation.navigate("home");
   }
-
 
   return (
     <View>
       <Title>Edit Trip</Title>
 
-     
-
       <TextInput
-        placeholder="country"
+        placeholder="Country"
         onChangeText={(text) => {
-          setCountry(text);
+          setTripDetails({ ...tripDetails, country: text });
         }}
-        value={country}
+        value={tripDetails.country}
       />
-
-  
 
       <Button title="start date" onPress={() => setShow("date")} mode={mode} />
 
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
-          value={date}
+          value={new Date(tripDetails.date.seconds * 1000)}
           is24Hour={true}
           display="default"
           onChange={onDateChange}
@@ -121,18 +91,14 @@ function getTrip() {
       {endShow && (
         <DateTimePicker
           testID="dateTimePicker"
-          value={endDate}
+          value={new Date(tripDetails.endDate.seconds * 1000)}
           is24Hour={true}
           display="default"
           onChange={onEndDateChange}
         />
       )}
 
-
-
       <Button onPress={updateHandler} title="submit"></Button>
-
-
     </View>
   );
 };
