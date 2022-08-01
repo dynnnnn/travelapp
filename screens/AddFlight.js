@@ -50,15 +50,10 @@ const AddFlight = ({ route, navigation }) => {
     setShow(Platform.OS === "ios");
     setFlightDate(currentDate);
 
-    let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
+    let date = new Date(currentDate);
+  
 
-    setFlightDate(fDate);
+    setFlightDate(date);
   }
 
   function showMode(currentMode) {

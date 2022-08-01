@@ -146,7 +146,7 @@ const TripDetails = ({ navigation, route }) => {
                 flightNumber: item.flightNumber,
                 startDest: item.startDest,
                 endDest: item.endDest,
-                flightDate: item.flightDate,
+                flightDate: moment(item.flightDate.toDate()).format('DD MMMM YYYY'),
                 tripId: id,
               })
             }
@@ -154,7 +154,7 @@ const TripDetails = ({ navigation, route }) => {
             <View>
               <SmallHeading>{item.flightNumber}</SmallHeading>
               <Text>
-                {item.startDest} to {item.endDest} {item.flightDate}
+                {item.startDest} to {item.endDest} {moment(item.flightDate.toDate()).format('DD MMMM YYYY')}
               </Text>
             </View>
           </TouchableOpacity>
