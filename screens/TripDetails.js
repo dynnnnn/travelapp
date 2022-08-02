@@ -202,9 +202,6 @@ const TripDetails = ({ navigation, route }) => {
             onPress={() =>
               navigation.navigate("attractiondetails", {
                 attractionId: item.id,
-                description: item.description,
-                location: item.location,
-                date: item.date,
                 tripId: id,
               })
             }
@@ -212,7 +209,7 @@ const TripDetails = ({ navigation, route }) => {
         <View>
         <SmallHeading>{item.description}</SmallHeading>
         <Text>
-          {item.location} {item.date}
+          {item.location} 
         </Text>
       </View>
       </TouchableOpacity>

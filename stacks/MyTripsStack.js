@@ -14,6 +14,7 @@ import Home from '../screens/Home';
 import TripDetails from '../screens/TripDetails';
 import AccomDetails from '../screens/AccomDetails';
 import AttractionDetails from '../screens/AttractionDetails';
+import Map from '../screens/Map';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,7 @@ export default function TripStack({navigation}) {
       <Stack.Screen name="editaccom" component={EditAccom} options={{ headerShown: false }} />
       <Stack.Screen name="editattraction" component={EditAttraction} options={{ headerShown: false }} />
      
-     
+      <Stack.Screen name="Map" component={Map}  />
     
     </Stack.Navigator>
 
