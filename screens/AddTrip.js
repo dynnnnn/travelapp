@@ -9,14 +9,15 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { monthNames } from "../constants/Month";
-import { days } from "../constants/Month";
+
 
 import Title from "../components/Title";
+import GoogleCountryAutoComplete from "./GoogleCountryAutoComplete";
+import PrimaryButton from "../components/PrimaryButton";
 
-export default function AddTrip({ navigation }) {
+export default function AddTrip({ navigation, route }) {
   const [country, setCountry] = useState("");
-
+  const [placeId, setPlaceId] = useState();
   const [date, setDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [mode, setMode] = useState("date");
@@ -29,6 +30,20 @@ export default function AddTrip({ navigation }) {
 
     setUser(user.email);
   }, []);
+
+  useEffect(() => {
+   const destination = route.params?.destination;
+   const placeId = route.params?.placeId;
+
+   if (destination){
+     setCountry(destination);
+     setPlaceId(placeId);
+
+   }
+
+  }, [route]);
+
+
 
   function onDateChange(event, selectedDate) {
     const currentDate = selectedDate || date;
@@ -62,6 +77,7 @@ export default function AddTrip({ navigation }) {
       date: date,
       endDate: endDate,
       user: user,
+      placeId: placeId
     });
 
     navigation.navigate("home");
@@ -72,8 +88,9 @@ export default function AddTrip({ navigation }) {
     <View style={styles.container}>
       <Title>Add Trip</Title>
 
+<PrimaryButton onPress={() => navigation.navigate("Country")}>Set Destination</PrimaryButton>
       <TextInput
-        placeholder="country"
+        
         onChangeText={(text) => {
           setCountry(text);
         }}

@@ -15,6 +15,8 @@ import TripDetails from '../screens/TripDetails';
 import AccomDetails from '../screens/AccomDetails';
 import AttractionDetails from '../screens/AttractionDetails';
 import Map from '../screens/Map';
+import GooglePlacesInput from '../screens/GoogleAutoComplete';
+import GoogleCountryAutoComplete from '../screens/GoogleCountryAutoComplete';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +45,8 @@ export default function TripStack({navigation}) {
       <Stack.Screen name="editattraction" component={EditAttraction} options={{ headerShown: false }} />
      
       <Stack.Screen name="Map" component={Map}  />
+      <Stack.Screen name="googleautocomplete" component={GooglePlacesInput}  />
+      <Stack.Screen name="Country" component={GoogleCountryAutoComplete}  />
     
     </Stack.Navigator>
 

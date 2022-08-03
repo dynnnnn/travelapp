@@ -11,13 +11,14 @@ import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import firebase from "firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { monthNames } from "../constants/Month";
+
+
 import {
   getCurrentPositionAsync,
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
-import getMapPreview from "../util/location";
+import getMapPreview, { getCoordiates } from "../util/location";
 import { getAddress } from "../util/location";
 import { useIsFocused } from "@react-navigation/native";
 import PrimaryButton from "../components/PrimaryButton";
@@ -27,100 +28,62 @@ const db = firebase.firestore();
 const AddActivity = ({ navigation, route }) => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const [attractionDate, setAttractionDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
+  const [ searchAddress, setSearchAddress] = useState("");
+  const [ placeId, setPlaceId] = useState();
+  const [ tripId, setTripId] = useState("");
+ 
   const [pickedLocation, setPickedLocation] = useState();
-  const isFocused = useIsFocused();
 
-  const id = route.params.id;
+  function getTrip() {
+    const id = route.params.id;
+    setTripId(id);
 
-  async function submitHandler() {
-    const newAttraction = await db
-      .collection("trips")
-      .doc(id)
-      .collection("attractions")
-      .doc()
-      .set({
-        date: attractionDate,
-        location: location,
-        description: description,
-        coordinates: { lat: pickedLocation.lat, lng: pickedLocation.lng}
-      });
-
-    navigation.navigate("tripdetails");
-    return newAttraction;
   }
-
-  function onDateChange(event, selectedDate) {
-    const currentDate = selectedDate || attractionDate;
-    setShow(Platform.OS === "ios");
-    setAttractionDate(currentDate);
-
-    let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      " " +
-      monthNames[tempDate.getMonth()] +
-      " " +
-      tempDate.getFullYear();
-
-    setAttractionDate(fDate);
-  }
-
-  function showMode(currentMode) {
-    setShow(true);
-    setMode(currentMode);
-  }
-
-  const [locationPermissionInformation, requestPermission] =
-    useForegroundPermissions();
 
   useEffect(() => {
-    if (isFocused && route.params) {
-      const mapPickedLocation = {
-        lat: route.params.pickedLat,
-        lng: route.params.pickedLng,
-      };
-      setPickedLocation(mapPickedLocation);
-    }
-  }, [route, isFocused]);
+    getTrip();
+  }, []);
+  
 
-  async function verifyPermissions() {
-    if (
-      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
-    ) {
-      const permissionResponse = await requestPermission();
+  useEffect(() => {
+if (route.params.address){
+  const address = route.params.address;
+  const placeId = route.params.placeId;
+  setSearchAddress(address);
+  setPlaceId(placeId);
 
-      return permissionResponse.granted;
-    }
+}
 
-    if (locationPermissionInformation.status === PermissionStatus.DENIED) {
-      Alert.alert(
-        "Insufficient Permissions!",
-        "You need to grant location permissions."
-      );
-      return false;
-    }
-    return true;
-  }
+  }, [route]);
+ 
 
-  async function getLocationHandler() {
-    const hasPermission = await verifyPermissions();
 
-    if (!hasPermission) {
-      return;
-    }
-    const location = await getCurrentPositionAsync();
-    setPickedLocation({
-      lat: location.coords.latitude,
-      lng: location.coords.longitude,
+async function submitHandler() {
+
+ try{
+
+  const newAttraction = await  db
+  .collection("trips")
+  .doc(tripId)
+  .collection("attractions")
+  .doc()
+    .set({
+        location: searchAddress,
+        description: description,
+        lat: pickedLocation.lat, 
+        lng: pickedLocation.lng,
+        placeId: placeId
     });
-  }
 
-  function pickOnMap() {
-    navigation.navigate("Map");
-  }
+  navigation.navigate("tripdetails");
+  return newAttraction;
+} catch(error){
+  console.log(error);
+}
+}
+
+
+
 
   let locationPreview = <Text>No location picked yet.</Text>;
 
@@ -135,63 +98,67 @@ const AddActivity = ({ navigation, route }) => {
     );
   }
 
-  function savePlaceHandler() {
-    console.log(pickedLocation);
-  }
+ 
+
+//convert coordinates to address
+  // useEffect(() => {
+  //   async function handleLocation() {
+  //     if (pickedLocation) {
+  //       const address = await getAddress(
+  //         pickedLocation.lat,
+  //         pickedLocation.lng
+  //       );
+  //       setLocation(address);
+    
+  //     }
+  //   }
+
+  //   handleLocation();
+  // }, [pickedLocation]);
+
+  //convert placeId to coordinates
 
   useEffect(() => {
-    async function handleLocation() {
-      if (pickedLocation) {
-        const address = await getAddress(
-          pickedLocation.lat,
-          pickedLocation.lng
-        );
-        setLocation(address);
+    async function getLocationCoords() {
+      if (placeId) {
+        const coordinates = await getCoordiates(placeId);
+        console.log(coordinates);
+        setPickedLocation({
+          lat: coordinates.lat,
+          lng: coordinates.lng,
+        });
     
       }
     }
 
-    handleLocation();
-  }, [pickedLocation]);
+    getLocationCoords();
+  }, [placeId]);
 
   return (
     <View>
+    
       <Title>Add Attraction</Title>
+      
 
       <View style={styles.mapPreview}>{locationPreview}</View>
 
-      <PrimaryButton onPress={getLocationHandler}>Locate User</PrimaryButton>
 
-      <PrimaryButton onPress={pickOnMap}>Pick on Map</PrimaryButton>
-
-      <PrimaryButton onPress={savePlaceHandler}>Save location</PrimaryButton>
-
-      <Button title="date" onPress={() => setShow("date")} mode={mode} />
-
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={attractionDate}
-          is24Hour={true}
-          display="default"
-          onChange={onDateChange}
-        />
-      )}
+      <PrimaryButton onPress={() => navigation.navigate("googleautocomplete")}>Search Location</PrimaryButton>
 
       <TextInput
-        placeholder="location"
-        value={location}
-        onChangeText={(text) => {
-          setLocation(text);
-        }}
-      />
-      <TextInput
-        placeholder="description"
+        placeholder="name"
         value={description}
         onChangeText={(text) => {
           setDescription(text);
         }}
       />
+
+     
+
+      <Text>{searchAddress}</Text>
+
+
+      
       <PrimaryButton onPress={submitHandler}>Add</PrimaryButton>
     </View>
   );
@@ -214,4 +181,8 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 4,
   },
+  google:{
+    flex: 1,
+
+  }
 });
