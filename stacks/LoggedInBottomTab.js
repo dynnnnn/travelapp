@@ -8,8 +8,8 @@ const Tab = createBottomTabNavigator();
 export default function LoggedInBottomTab({navigation}) {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="My Trips" component={MyTripsStack} />
-      <Tab.Screen name="Account" component={Account} />
+      <Tab.Screen name="My Trips" component={MyTripsStack} options={{ headerShown: false }}  />
+      <Tab.Screen name="Account" component={Account} options={{ headerShown: false }}/>
     </Tab.Navigator>
   );
 }

@@ -23,21 +23,18 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  return (
-    <NavigationContainer>
-      <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <Stack.Navigator
-          initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}
-        >
-          <Stack.Screen name="login" component={LogIn} />
-          <Stack.Screen
-            name="loggedInBottomTab"
-            component={LoggedInBottomTab}
-          />
-        </Stack.Navigator>
-      </LogInContext.Provider>
-    </NavigationContainer>
-  );
+
+  return  <NavigationContainer>
+  <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
+  <Stack.Navigator  initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}>
+  
+    <Stack.Screen name="login" component={LogIn} options={{ headerShown: false }}/>
+    <Stack.Screen name="loggedInBottomTab" component={LoggedInBottomTab} options={{ headerShown: false }}/>
+   
+  
+  </Stack.Navigator>
+  </LogInContext.Provider>
+</NavigationContainer>
 }
 
 const styles = StyleSheet.create({
