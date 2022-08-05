@@ -16,7 +16,7 @@ import LoggedInBottomTab from "./stacks/LoggedInBottomTab";
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from './components/Styles';
 import { useFonts } from 'expo-fonts';
-
+import AppLoading from 'expo-app-loading';
 
 const Stack = createNativeStackNavigator();
 
