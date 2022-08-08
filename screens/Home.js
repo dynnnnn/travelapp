@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 import moment from "moment";
+import {styles} from "../components/Styles";
 
 function Home({ navigation }) {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
