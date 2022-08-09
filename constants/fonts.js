@@ -3,33 +3,33 @@ import * as Font from 'expo-font'
 // fonts preloading
 export const fontAssets = [
   {
-    openSans_regular: require('../../assets/fonts/OpenSans-Regular.ttf'),
+    BandaNova_Book: require('../../assets/fonts/BandaNova-Book.ttf'),
   },
   {
-    openSans_regular_italic: require('../../assets/fonts/OpenSans-Italic.ttf'),
+    BandaNova_Book_Italic: require('../../assets/fonts/BandaNova-BookItalic.ttf'),
   },
   {
-    openSans_semiBold: require('../../assets/fonts/OpenSans-Semibold.ttf'),
+    BandaNova_Medium: require('../../assets/fonts/BandaNova-Medium.ttf'),
   },
   {
-    openSans_semiBold_italic: require('../../assets/fonts/.ttf'),
+    BandaNova_Medium_Italic: require('../../assets/fonts/BandaNova-MediumItalic.ttf'),
   },
   {
-    openSans_bold: require('../../assets/fonts/.ttf'),
+    BandaNova_Bold: require('../../assets/fonts/BandaNova-Bold.ttf'),
   },
   {
-    openSans_bold_italic: require('../../assets/fonts/.ttf'),
+    BandaNova_Bold_Italic: require('../../assets/fonts/BandaNova-BoldItalic.ttf'),
   },
 ].map((x) => Font.loadAsync(x))
 
 const fonts = {
-  openSan: {
-    regular: '',
-    regularItalic: '',
-    semiBold: '',
-    semiBoldItalic: '',
-    bold: '',
-    boldItalic: '',
+  BandaNova: {
+    book: 'BandaNova_Book',
+    bookItalic: 'BandaNova_Book_Italic',
+    medium: 'BandaNova_Medium',
+    mediumItalic: 'BandaNova_Medium_Italic',
+    bold: 'BandaNova_Bold',
+    boldItalic: 'BandaNova_Bold_Italic',
   },
 }
 
