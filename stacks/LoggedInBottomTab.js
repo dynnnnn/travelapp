@@ -4,7 +4,9 @@ import Account from '../screens/Account';
 import MyTripsStack from './MyTripsStack';
 import {Ionicons} from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { Entypo } from "@expo/vector-icons";
+import { Entypo , MaterialCommunityIcons } from "@expo/vector-icons";
+
+
 
 
 
