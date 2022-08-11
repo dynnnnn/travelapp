@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Style from "../components/Styles";
 
 
 import Title from "../components/Title";

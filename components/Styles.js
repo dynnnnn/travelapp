@@ -75,7 +75,8 @@ export const lightStyles = {
   headerTitle: {
     fontSize: 40,
     color: "#FFFFFF",
-   fontFamily: "BandaNova",
+    fontFamily: "BandaNova",
+    fontWeight: "bold",
  },
 
   headerTint: "#FFFFFF",

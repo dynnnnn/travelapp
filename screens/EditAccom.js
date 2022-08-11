@@ -4,6 +4,7 @@ import Title from '../components/Title';
 import firebase from 'firebase';
 import moment from 'moment';
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Style from"../components/styles";
 
 
 const EditAccom = ({navigation, route}) => {

@@ -11,6 +11,7 @@ import firebase from "firebase";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 import moment from "moment";
+import Style from "../components/styles";
 
 const TripDetails = ({ navigation, route }) => {
   const db = firebase.firestore();

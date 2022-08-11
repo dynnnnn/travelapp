@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "firebase";
+import Style from "../components/styles";
+
 
 const EditTrip = ({ navigation, route }) => {
   const [mode, setMode] = useState("date");

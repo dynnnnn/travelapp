@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import firebase from "firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { monthNames } from "../constants/Month";
+import Style from "../components/Styles";
 
 const db = firebase.firestore();
 

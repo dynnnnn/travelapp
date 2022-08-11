@@ -4,6 +4,7 @@ import firebase from "firebase";
 import Title from "../components/Title";
 import getMapPreview from "../util/location";
 import PrimaryButton from "../components/PrimaryButton";
+import Style from "../components/Styles";
 
 const AttractionDetails = ({ navigation, route }) => {
   const db = firebase.firestore();

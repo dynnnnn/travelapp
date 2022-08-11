@@ -4,6 +4,7 @@ import firebase from "firebase";
 import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Style from "../components/styles";
 
 const EditFlight = ({ navigation, route }) => {
   const db = firebase.firestore();

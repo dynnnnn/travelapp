@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Style from "../components/styles";
 
 const EditAttraction = () => {
   return (

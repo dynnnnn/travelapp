@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
 import firebase from "firebase";
+import Style from "../components/Styles";
 
 const FlightDetails = ({ navigation, route }) => {
   const db = firebase.firestore();

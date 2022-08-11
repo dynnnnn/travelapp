@@ -3,6 +3,7 @@ import { auth } from "../database/firebase";
 import firebase from "firebase/app";
 import { LogInContext } from "../context/LogInContext";
 import Title from "../components/Title";
+import Style from "../components/Styles";
 
 
 import {
@@ -54,13 +55,12 @@ function LogIn({ navigation }) {
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
+            HEAD
       <Text > Hi Gorgeous!</Text>
       <Text style={styles.title}>{isLogIn ? "Log In" : "Sign Up"}</Text>
-=======
+
 
       <Title>{isLogIn ? "Log In" : "Sign Up"}</Title>
->>>>>>> 7415c86f66e792434b2f1eca4dc1944f0d542553
       <TextInput
         placeholder="email"
         value={email}
