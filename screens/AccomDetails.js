@@ -82,4 +82,27 @@ const AccomDetails = ({navigation, route}) => {
 
 export default AccomDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container:{
+      flex: 1,
+      padding: 24,
+      paddingBottom: 96,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    title:{
+      fontSize: 30,
+      fontFamily: 'BandaNova-Bold',
+      textAlign: 'center',
+    },
+
+    text: {
+      fontSize: 20,
+      fontFamily: 'BandaNova-Book',
+      textAlign: 'center',
+
+    },
+
+  
+})

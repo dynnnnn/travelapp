@@ -16,44 +16,45 @@ export const Styles = {
     borderRadius: 55,
     width: "50%",
     alignItems: "center",
-    fontFamily: "BandaNova",
+    fontFamily: "BandaNova-Book",
  },
 
  buttonText: { 
     fontSize: 20, 
     margin: 10,
     color: "#FFFFFF",
-    fontFamily: "BandaNova",
+    fontFamily: "BandaNova-Book",
     alignItems: "center",
  },
 
  title: {
    fontSize: 50, 
    textAlign: 'center',
-   fontFamily: "BandaNova",
+   fontFamily: "BandaNova-Bold",
    color: '#FFFFFF',  
  },
 
  content: {
    fontSize: 20,
-   fontFamily: "BandaNova",
+   fontFamily: "BandaNova-Book",
+   
  },
 
   text: {
-   color: "#FFFFFF",
-   fontFamily: "BandaNova",
+   color: "#00266B",
+   fontFamily: "BandaNova-Book",
    textAlign: "center",
  },
 
   textInput:{
-   fontFamily: "BandaNova",
+   fontFamily: "BandaNova-Book",
    fontSize: 20,
    textAlign:"center",
-   color: '#FFFFFF',
+   color: '#00266B',
  } ,
  
   switchText:{
-   fontFamily:"BandaNova",
+   fontFamily:"BandaNova-Book",
    fontSize: 30,
    textAlign:"center",
    color: '#FFFFFF',
@@ -64,7 +65,7 @@ export const lightStyles = {
  
   text: {
     color: "#00266B",
-    fontFamily: "BandaNova",
+    fontFamily: "BandaNova-Book",
     fontSize: 30,
  },
 
@@ -94,7 +95,7 @@ export const darkStyles = {
 
   text: {
     color: "#FFFFFF",
-    fontFamily: "BandaNova",
+    fontFamily: "BandaNova-Book",
     fontSize: 30,
  },
 
@@ -108,7 +109,7 @@ export const darkStyles = {
 
   headerTitle: {
     fontSize: 40,
-    fontFamily:"BandaNova",
+    fontFamily:"BandaNova-Bold",
     alignItems: "center",
     color: "#FFFFFF",
   },
