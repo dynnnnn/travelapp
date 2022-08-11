@@ -4,6 +4,7 @@ import { auth } from "../database/firebase";
 import { LogInContext } from "../context/LogInContext";
 import Title from "../components/Title";
 import firebase from "firebase";
+import Style from"../components/Styles";
 
 const Account = ({ navigation }) => {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
