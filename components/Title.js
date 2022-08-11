@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 40,
         fontWeight: 'bold',
+        fontFamily: 'BandaNova',
         padding: 20,
         marginTop: 50,
     }
