@@ -135,3 +135,4 @@ const AddAccom = ({ navigation, route }) => {
 export default AddAccom;
 
 const styles = StyleSheet.create({});
+
