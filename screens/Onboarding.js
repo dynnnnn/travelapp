@@ -94,19 +94,19 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: 300,
     height: 70,
-    backgroundColor: '#3B55E6',
+    backgroundColor: '#00266B',
     alignItems: 'center',
     justifyContent: 'center'
   },
   title: {
     fontFamily: 'BandaNova',
     fontSize: 40,
-    color: '#00266B'
+    color: '#FFFFFF'
   },
   subTitleContainer: {
     width: 200,
     height: 50,
-    backgroundColor: '#3B55E6',
+    backgroundColor: '#00266B',
     opacity: 0.7,
     alignItems: 'center',
     justifyContent: 'center'
