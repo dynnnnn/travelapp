@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'BandaNova',
+    fontWeight: 'bold',
     fontSize: 40,
     color: '#FFFFFF'
   },
