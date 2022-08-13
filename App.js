@@ -22,10 +22,22 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loaded] = useFonts({
+    "": require('./assets/fonts/'),
+  });
+  
+  if (!loaded) {
+    return null;
+  }
 
+  return (
+    <View style={styles.container}>
+      <Text style={{ fontFamily: '', fontSize: 30 }}></Text>
+    </View>
+  );
+}
  
-     return 
-}        
+             
           <NavigationContainer>
     <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
     <Stack.Navigator  initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}>
