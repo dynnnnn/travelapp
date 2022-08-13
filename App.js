@@ -23,7 +23,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loaded] = useFonts({
-    "": require('./assets/fonts/'),
+    "BandaNovaBook": require('./assets/fonts/BandaNova-Book.ttf'),
+    "BandaNovaBold": require('./assets/fonts/BandaNova-Bold.ttf'),
   });
   
   if (!loaded) {
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: '', fontSize: 30 }}></Text>
+      <Text style={{ fontFamily: 'BandaNova', fontSize: 30 }}></Text>
     </View>
   );
 }
@@ -40,8 +41,10 @@ export default function App() {
              
           <NavigationContainer>
     <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
+
     <Stack.Navigator  initialRouteName={isLoggedIn ? "loggedInBottomTab" : "login"}>
-  
+
+    <Stack.Screen name="Onboarding" component={Onboarding}/>
     <Stack.Screen name="login" component={LogIn} options={{ headerShown: false }}/>
     <Stack.Screen name="loggedInBottomTab" component={LoggedInBottomTab} options={{ headerShown: false }}/>
    
