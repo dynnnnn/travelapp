@@ -13,9 +13,11 @@ export default Title
 
 const styles = StyleSheet.create({
     title:{
+        color: '#00266B',
         fontSize: 40,
         fontWeight: 'bold',
         fontFamily: 'BandaNova',
+        textAlign: 'center',
         padding: 20,
         marginTop: 50,
     }
