@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     margin: 4,
-    backgroundColor: "black",
+    backgroundColor: "#00266B",
     elevation: 2,
     borderRadius: 4
   },
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
+    fontFamily: "BandaNova-Book",
     fontSize: 16,
-    color: "white",
+    color: "#FFFFFF",
   },
 });
