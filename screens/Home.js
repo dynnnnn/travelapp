@@ -14,6 +14,11 @@ import Title from "../components/Title";
 import SmallHeading from "../components/SmallHeading";
 import moment from "moment";
 import Style from "../components/Styles";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+
 
 function Home({ navigation }) {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
@@ -22,7 +27,7 @@ function Home({ navigation }) {
   const [trips, setTrips] = useState([]);
   const [user, setUser] = useState("");
 
-
+  const Stack = createNativeStackNavigator();
   // get user
   // useEffect(() => {
   //   const user = firebase.auth().currentUser;
@@ -70,10 +75,10 @@ if (user){
     
   
 
-
- 
-
   return (
+
+
+    
     <View>
       <Title>My Trips</Title>
     
@@ -103,17 +108,47 @@ if (user){
       <Button title="Add Trip" onPress={() => navigation.navigate("addtrip")} />
     </View>
   );
+
+  function App() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: 'HOME' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+
 }
 
 export default Home;
 
 const styles = StyleSheet.create({
   tripContainer: {
-    padding: 10,
-    margin: 10,
+     padding: 10,
+     margin: 10,
   },
+
   gridContainer: {
-    padding: 30,
-    margin: 20,
+      padding: 30,
+      margin: 20,
   },
+
+  header:{
+      backgroundColor: '#00266B',
+      alignItems: 'center',
+      
+    },
+
+    title:{
+      fontSize: 40,
+      fontWeight: 'bold',
+      fontFamily: 'BandaNova-Bold',
+      color: '#FFFFFF',
+      textAlign: 'center',
+    },
 });
