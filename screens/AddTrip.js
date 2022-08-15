@@ -131,5 +131,12 @@ export default function AddTrip({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     padding: 100,
+    flex: 1,
   },
+
+  text:{
+    fontsize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'BandaNova',
+  }
 });
