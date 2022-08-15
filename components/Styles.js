@@ -1,5 +1,7 @@
 import { StyleSheet , Text, View } from 'react-native';
 import React from 'react';
+import * as Font from 'expo-font';
+
 
 
 
@@ -7,7 +9,7 @@ export const Styles = {
 
  container: {
      flex: 1,
-     padding: 24,
+     padding: 100,
      backgroundColor: "#FFFFFF",
      justifyContent:"center",
   },
@@ -17,13 +19,14 @@ export const Styles = {
     borderRadius: 55,
     width: "50%",
     alignItems: "center",
-    fontFamily: "BandaNova-Book",
+    
  },
 
  buttonText: { 
     fontSize: 20, 
     margin: 10,
     color: "#FFFFFF",
+    fontWeight: 'book',
     fontFamily: "BandaNova-Book",
     alignItems: "center",
  },
@@ -44,6 +47,7 @@ export const Styles = {
   text: {
    color: "#00266B",
    fontFamily: "BandaNova-Book",
+   fontWeight: 'book',
    textAlign: "center",
  },
 
@@ -81,7 +85,7 @@ export const lightStyles = {
   headerTitle: {
     fontSize: 40,
     color: "#FFFFFF",
-    fontFamily: "BandaNova",
+    fontFamily: "BandaNova-Bold",
     fontWeight: "bold",
  },
 
@@ -96,6 +100,7 @@ export const darkStyles = {
 
   text: {
     color: "#FFFFFF",
+    fontWeight: "book",
     fontFamily: "BandaNova-Book",
     fontSize: 30,
  },
@@ -110,6 +115,7 @@ export const darkStyles = {
 
   headerTitle: {
     fontSize: 40,
+    fontWeight: 'bold',
     fontFamily:"BandaNova-Bold",
     alignItems: "center",
     color: "#FFFFFF",

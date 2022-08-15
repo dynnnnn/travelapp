@@ -47,7 +47,7 @@ const TripDetails = ({ navigation, route }) => {
 
 
 
-  // Fligts collection
+  // Flights collection
   useEffect(() => {
     if (id) {
       const unsubscribe = db
@@ -228,7 +228,7 @@ export default TripDetails;
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: "lightgrey",
+    backgroundColor: "#9EA2A2",
     borderRadius: 5,
     margin: 20,
   },
@@ -236,4 +236,13 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
   },
+   
+  smallHeading:{
+    fontWeight: 'bold',
+    fontsize: 20,
+    fontFamily: 'BandaNova-Bold',
+    color: '#00266B',
+  }
+
+
 });
