@@ -69,7 +69,9 @@ export const Styles = {
 export const lightStyles = {
  
   text: {
+    textAlign: 'center',
     color: "#00266B",
+    fontWeight: 'normal',
     fontFamily: "BandaNova-Book",
     fontSize: 30,
  },
@@ -77,12 +79,13 @@ export const lightStyles = {
   header: {
     backgroundColor: "#00266B",
     height: 100,
-    shadowColor: "black",
+    shadowColor: "#FFFFFF",
     shadowOpacity: 0.2,
     shadowRadius: 5,
  },
 
   headerTitle: {
+    alignItems: 'center',
     fontSize: 40,
     color: "#FFFFFF",
     fontFamily: "BandaNova-Bold",
@@ -100,7 +103,7 @@ export const darkStyles = {
 
   text: {
     color: "#FFFFFF",
-    fontWeight: "book",
+    fontWeight: "normal",
     fontFamily: "BandaNova-Book",
     fontSize: 30,
  },

@@ -1,4 +1,5 @@
 import { Pressable, Text, StyleSheet } from "react-native";
+import style from "components/Styles";
 
 function PrimaryButton({ onPress, children }) {
   return (
@@ -15,6 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     margin: 4,
+    alignItems: 'center',
     backgroundColor: "#00266B",
     elevation: 2,
     borderRadius: 4
