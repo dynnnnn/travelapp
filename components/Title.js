@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
 const Title = ({children}) => {
   return (
@@ -20,5 +20,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 20,
         marginTop: 50,
-    }
+    },
 })
