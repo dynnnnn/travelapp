@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import * as SplashScreen from 'expo-splash-screen';
 import Onboarding from "./screens/Onboarding";
 import LogIn from "./screens/LogIn";
 import Home from "./screens/Home";
