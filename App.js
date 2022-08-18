@@ -55,8 +55,8 @@ export default function App() {
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-  },
-});
+//const styles = StyleSheet.create({
+  //container: {
+    //marginTop: 10,
+  //},
+//});

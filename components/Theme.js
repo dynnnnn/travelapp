@@ -34,9 +34,10 @@ const ThemedComponent = () => {
 const palette = {
     purple: '#5A31F4',
     green: '#0ECD9D',
-    red: '#CD0E61',
+    red: '#FF0000',
     midnightblue: '#00266B',
     white: '#FFFFFF',
+    phantomgray: '#9EA2A2',
   }
   
   export const theme = {
@@ -56,12 +57,12 @@ const palette = {
     },
     textVariants: {
       header: {
-        fontFamily: '',
+        fontFamily: 'BandaNova',
         fontSize: 36,
         fontWeight: 'bold',
       },
       body: {
-        fontFamily: '',
+        fontFamily: 'BandaNova',
         fontSize: 16,
       },
     }
