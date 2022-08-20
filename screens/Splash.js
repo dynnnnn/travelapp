@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
   },
   textSign: {
       color: '#FFFFFF',
-      fontWeight: ''
+      fontWeight: 'book',
   }
 });
