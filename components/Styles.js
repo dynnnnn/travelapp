@@ -1,10 +1,3 @@
-import { StyleSheet , Text, View } from 'react-native';
-import React from 'react';
-import * as Font from 'expo-font';
-
-
-
-
 export const Styles = {
 
  container: {
@@ -74,9 +67,6 @@ export const Styles = {
     marginTop: 70,
     marginBottom: 50
 },
-
-
-
 
 }
  
