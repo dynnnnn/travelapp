@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   signup: {
     fontFamily: 'BandaNova',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 16,
     color: '#00266B'
   },
   loginContainer: {
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   login: {
     fontFamily: 'BandaNova',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 16,
     color: '#00266B'
   }
 });
