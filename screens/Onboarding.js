@@ -48,7 +48,7 @@ export default class Onboarding extends Component {
         </Swiper>
         <View style={styles.textContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Take a Break.</Text>
+            <Text style={styles.title}>Take a Break.</Text> 
           </View>
           <View style={styles.subTitleContainer}>
             <Text style={styles.subtitle}>Just Fly.</Text>
