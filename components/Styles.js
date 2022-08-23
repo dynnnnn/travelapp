@@ -64,6 +64,20 @@ export const Styles = {
    textAlign:"center",
    color: '#FFFFFF',
  },
+
+
+  textArea: {
+    backgroundColor: "#9ea2a2",
+    borderColor: "#9ea2a2",
+    borderWidth: 2,
+    borderRadius: 5,
+    marginTop: 70,
+    marginBottom: 50
+},
+
+
+
+
 }
  
 export const lightStyles = {
