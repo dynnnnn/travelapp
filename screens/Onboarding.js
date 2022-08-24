@@ -48,20 +48,21 @@ export default class Onboarding extends Component {
         </Swiper>
         <View style={styles.textContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Take a Break.</Text> 
+            <Text style={styles.title}></Text> 
           </View>
           <View style={styles.subTitleContainer}>
-            <Text style={styles.subtitle}>Just Fly.</Text>
+            <Text style={styles.subtitle}></Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => this._onPress('Tapped Sign up')}>
             <View style={styles.signupContainer}>
-              <Text style={styles.signup}>Sign up</Text>
+              
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this._onPress('Tapped Log in')}>
             <View style={styles.loginContainer}>
+             <Text style={styles.signup}>Sign up</Text>
               <Text style={styles.login}>Log in</Text>
             </View>
           </TouchableOpacity>
