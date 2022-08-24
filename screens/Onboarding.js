@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 
 export default class Onboarding extends Component {
   constructor(props) {
