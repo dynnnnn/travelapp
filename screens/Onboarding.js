@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StatusBar,
-  StyleSheet,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  Alert
-} from 'react-native';
+import { View, Text, StatusBar, StyleSheet, Image, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import Swiper from 'react-native-swiper';
+
 
 const { width, height } = Dimensions.get('screen');
 
@@ -71,19 +63,23 @@ export default class Onboarding extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+
   slide: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   image: {
     width: width,
     height: height
   },
+
   textContainer: {
     position: 'absolute',
     bottom: 200,
@@ -92,6 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center'
   },
+
   titleContainer: {
     width: 300,
     height: 70,
@@ -99,12 +96,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   title: {
     fontFamily: 'BandaNova',
     fontWeight: 'bold',
     fontSize: 40,
     color: '#FFFFFF'
   },
+
   subTitleContainer: {
     width: 200,
     height: 50,
@@ -113,11 +112,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   subtitle: {
     fontFamily: 'BandaNova',
     fontSize: 24,
     color: '#FFFFFF'
   },
+
   buttonContainer: {
     position: 'absolute',
     flexDirection: 'row',
@@ -128,20 +129,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+
   signupContainer: {
     width: 180,
     height: 60,
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   signup: {
     fontFamily: 'BandaNova',
     fontWeight: 'bold',
     fontSize: 16,
     color: '#00266B'
   },
+
   loginContainer: {
     width: 180,
     height: 60,
@@ -151,10 +155,12 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
     borderWidth: 2
   },
+
   login: {
     fontFamily: 'BandaNova',
     fontWeight: 'bold',
     fontSize: 16,
     color: '#00266B'
   }
+
 });
