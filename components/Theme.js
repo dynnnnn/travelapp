@@ -1,7 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {View, Switch} from 'react-native';
-
 import {theme, darkTheme} from './theme';
+
+
 
 const ThemeContext = React.createContext({})
 
@@ -32,7 +33,7 @@ const ThemedComponent = () => {
 
 
 const palette = {
-    purple: '#5A31F4',
+    purple: '',
     green: '#0ECD9D',
     red: '#FF0000',
     midnightblue: '#00266B',
@@ -49,22 +50,26 @@ const palette = {
       danger: palette.red,
       failure: palette.red,
     },
+
     spacing: {
       s: 8,
       m: 16,
       l: 24,
       xl: 40,
     },
+
     textVariants: {
       header: {
         fontFamily: 'BandaNova',
         fontSize: 36,
         fontWeight: 'bold',
       },
+
       body: {
         fontFamily: 'BandaNova',
         fontSize: 16,
       },
+      
     }
   };
   
@@ -72,7 +77,7 @@ const palette = {
     ...theme,
     colors: {
       ...theme.colors,
-      background: palette.black,
+      background: palette.blue,
       foreground: palette.white,
     }
   }
