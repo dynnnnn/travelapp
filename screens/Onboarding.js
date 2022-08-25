@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 'width',
-    height: 'height'
+    width: 'null',
+    height: 'null'
   },
 
   textContainer: {
