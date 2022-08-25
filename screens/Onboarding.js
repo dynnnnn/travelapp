@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 
   image: {
     width: 'width',
-    height: height
+    height: 'height'
   },
 
   textContainer: {
