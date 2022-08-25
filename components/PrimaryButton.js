@@ -19,11 +19,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "#00266B",
     elevation: 2,
-    borderRadius: 4
+    borderRadius: 30
   },
+
   pressed: {
     opacity: 0.7,
   },
+  
   text: {
     textAlign: "center",
     fontFamily: "BandaNova-Book",

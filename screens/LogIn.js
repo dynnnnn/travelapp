@@ -4,16 +4,9 @@ import firebase from "firebase/app";
 import { LogInContext } from "../context/LogInContext";
 import Title from "../components/Title";
 import Style from "../components/Styles";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, } from "react-native";
 
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Button,
-} from "react-native";
 
 function LogIn({ navigation }) {
   const { isLoggedIn, setIsLoggedIn } = useContext(LogInContext);
@@ -113,16 +106,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 100,
   },
+
   button: {
     backgroundColor: "#00266B",
-    borderRadius: 10,
+    borderRadius: 30,
     width: 300,
     alignItems: "center",
   },
+
   buttonText: {
-    fontWeight: "400",
+    fontFamily: 'BandaNova',
+    fontWeight: 'normal',
     fontSize: 15,
     margin: 15,
-    color: "white",
+    color: "FFFFFF",
   },
+
 });

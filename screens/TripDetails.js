@@ -232,6 +232,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 20,
   },
+
   container: {
     padding: 10,
     margin: 5,
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
   smallHeading:{
     fontWeight: 'bold',
     fontsize: 20,
-    fontFamily: 'BandaNova-Bold',
+    fontFamily: 'BandaNova',
     color: '#00266B',
   }
 
