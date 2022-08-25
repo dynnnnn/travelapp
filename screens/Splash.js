@@ -110,5 +110,6 @@ const styles = StyleSheet.create({
   textSign: {
       color: '#FFFFFF',
       fontWeight: 'book',
+      fontFamily: 'BandaNova',
   }
 });
