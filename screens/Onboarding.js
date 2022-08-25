@@ -21,18 +21,21 @@ export default class Onboarding extends Component {
         <Swiper autoplay={true}>
           <View style={styles.slide}>
             <Image
+              resizeMode={'contain'}
               source={require('./assets/Onboarding_Screen_1.jpg')}
               style={styles.image}
             />
           </View>
           <View style={styles.slide}>
             <Image
+              resizeMode={'contain'}
               source={require('./assets/Onboarding_Screen_2.jpg')}
               style={styles.image}
             />
           </View>
           <View style={styles.slide}>
             <Image
+              resizeMode={'contain'}
               source={require('./assets/Onboarding_Screen_3.jpg')}
               style={styles.image}
             />
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: width,
+    width: 'width',
     height: height
   },
 
