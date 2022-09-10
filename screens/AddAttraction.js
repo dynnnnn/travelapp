@@ -1,19 +1,9 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Alert,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image,} from "react-native";
 import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import firebase from "firebase";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Style from "../components/Styles";
-
-
 import {
   getCurrentPositionAsync,
   useForegroundPermissions,
