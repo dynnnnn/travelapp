@@ -28,6 +28,7 @@
     "formik": "^2.2.9",
     "material-ui-community-icons": "^0.15.0",
     "moment": "^2.29.4",
+    "node-cache": "^5.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
