@@ -51,12 +51,6 @@ const AccomDetails = ({navigation, route}) => {
 
 
 
-   
-
-
-
-
-
   return (
     <View>
       <Title>Accom Details</Title>
