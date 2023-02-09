@@ -25,7 +25,7 @@ export const Styles = {
  },
 
  title: {
-   fontSize: 50, 
+   fontSize: 40, 
    textAlign: 'center',
    fontFamily: "BandaNova-Bold",
    color: '#FFFFFF',  
