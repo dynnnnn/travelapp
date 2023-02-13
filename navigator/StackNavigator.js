@@ -12,7 +12,7 @@ const screenOptionStyle = {
     backgroundColor: "#00266B",
   },
   headerTintColor: "white",
-  headerBackTitle: "Back",
+  headerBackTitle: "Black",
 };
 
 const MainStackNavigator = () => {
