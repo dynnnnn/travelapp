@@ -9,6 +9,7 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
+
 import getMapPreview, { getCoordiates } from "../util/location";
 import { getAddress } from "../util/location";
 import { useIsFocused } from "@react-navigation/native";
@@ -17,13 +18,12 @@ import PrimaryButton from "../components/PrimaryButton";
 const db = firebase.firestore();
 
 const AddActivity = ({ navigation, route }) => {
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
+  const [ location, setLocation] = useState("");
+  const [ description, setDescription] = useState("");
   const [ searchAddress, setSearchAddress] = useState("");
   const [ placeId, setPlaceId] = useState();
   const [ tripId, setTripId] = useState("");
- 
-  const [pickedLocation, setPickedLocation] = useState();
+  const [ pickedLocation, setPickedLocation] = useState();
 
   function getTrip() {
     const id = route.params.id;

@@ -2,8 +2,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import Title from '../components/Title';
 import firebase from "firebase";
-import moment from 'moment';
-import Style from"../components/Styles";
+// import moment from 'moment';
+// import Style from"../components/Styles";
 
 
 const AccomDetails = ({navigation, route}) => {
