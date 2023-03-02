@@ -19,6 +19,7 @@ const Account = ({ navigation }) => {
     console.log(email);
     setUser(email);
   }, []);
+
   //sign out
 
   const handleSignOut = () => {
