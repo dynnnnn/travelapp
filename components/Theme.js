@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {View, Switch} from 'react-native';
-import {theme, darkTheme} from './theme';
+//import {theme, darkTheme} from './theme';
 
 
 
