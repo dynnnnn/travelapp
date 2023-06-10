@@ -1,7 +1,5 @@
 import React from "react";
-
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import { ContactStackNavigator } from "./StackNavigator";
 import TabNavigator from "./TabNavigator";
 
@@ -17,3 +15,4 @@ const DrawerNavigator = () => {
 };
 
 export default DrawerNavigator;
+
